@@ -65,6 +65,7 @@ class User(models.Model):
     state = models.CharField(max_length=2, choices=STATE_CHOICES)
     sec_Code = models.IntegerField(max_length=5)
     verification_Status = models.BinaryField()
+    password = models.CharField(max_length=20)
 
 
 class Lender(models.Model):
