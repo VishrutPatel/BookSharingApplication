@@ -1,8 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class User(models.Model):
-    email_Id = models.EmailField(primary_key=True)
+class CustomerProfile(models.Model):
+    email = models.EmailField(primary_key=True, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     addr1 = models.CharField(max_length=255)
@@ -72,7 +73,7 @@ class User(models.Model):
 
 class Lender(models.Model):
     user_Email_Id = models.ForeignKey(
-        User,
+        CustomerProfile,
         on_delete=models.CASCADE,
         primary_key=True,
     )
@@ -82,7 +83,7 @@ class Lender(models.Model):
 
 class Borrower(models.Model):
     user_Email_Id = models.ForeignKey(
-        User,
+        CustomerProfile,
         on_delete=models.CASCADE,
         primary_key=True,
     )
@@ -96,7 +97,7 @@ class Books(models.Model):
     author = models.CharField(max_length=255)
     genre = models.CharField(max_length=50)
     user_Email_Id = models.ForeignKey(
-        User,
+        CustomerProfile,
         on_delete=models.CASCADE,
     )
     start_Date_Time = models.DateTimeField()
@@ -105,7 +106,7 @@ class Books(models.Model):
 
 class Transaction(models.Model):
     lender_Id = models.ForeignKey(
-        User,
+        CustomerProfile,
         on_delete=models.DO_NOTHING
     )
     book_Id = models.ForeignKey(
@@ -115,9 +116,9 @@ class Transaction(models.Model):
     start_Date = models.DateTimeField(primary_key=True)
     end_Date = models.DateTimeField()
     METHOD = (
-        ('HD','Home Delivery'),
-        ('MCP','Meet At Common Point'),
-        ('PK','Pickup'),
+        ('HD', 'Home Delivery'),
+        ('MCP', 'Meet At Common Point'),
+        ('PK', 'Pickup'),
     )
     method_Of_Delivery = models.CharField(max_length=3,choices=METHOD)
     location = models.CharField(max_length=255)
@@ -132,7 +133,7 @@ class BorrowRequest(models.Model):
     start_Time = models.DateTimeField()
     end_Time = models.DateTimeField()
     borrower_Email_Id = models.ForeignKey(
-        User,
+        CustomerProfile,
         on_delete=models.DO_NOTHING
     )
     request_Id = models.AutoField(primary_key=True)

@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
@@ -80,9 +80,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '931995vnp',
+        'PASSWORD': 'Greatness@007',
         'HOST':'127.0.0.1',
-        'PORT': '5433'
+        'PORT': '5432'
     }
 }
 
@@ -124,5 +124,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# AUTH_USER_MODEL = 'BookSharingApplication.User'
+
+# AUTHENTICATION_BACKENDS = ('BookSharingApplication.backends.MyAuthBackend', 'django.contrib.auth.backends.ModelBackend')
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
