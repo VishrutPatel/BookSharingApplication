@@ -1,0 +1,5 @@
+This folder contains all the sql procedures. 
+
+These procedures performs two major operations-
+1. They communicate to php script to retrieve results
+2. And stores any data provided by php script 
