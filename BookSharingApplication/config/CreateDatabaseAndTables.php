@@ -34,7 +34,6 @@ if ($conn->connect_error) {
 
 // sql to create table
 $sql = "CREATE TABLE User (
-id INT(6) UNSIGNED AUTO_INCREMENT, 
 firstname VARCHAR(30) NOT NULL,
 lastname VARCHAR(30) NOT NULL,
 addr1 VARCHAR(100) NOT NULL,
@@ -61,8 +60,7 @@ id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 email VARCHAR(50) NOT NULL,
 ratings FLOAT(3,2) ,
 no_of_reviews INT,
-CONSTRAINT Fk_UserID FOREIGN KEY (email),
-REFERENCES User(email),
+FOREIGN KEY (email) REFERENCES User(email)
 )";
 
 if ($conn->query($sql) === TRUE) {
@@ -76,8 +74,7 @@ id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 email VARCHAR(50) NOT NULL,
 ratings FLOAT(3,2) ,
 no_of_reviews INT,
-CONSTRAINT Fk_UserID FOREIGN KEY (email),
-REFERENCES User(email),
+FOREIGN KEY (email) REFERENCES User(email)
 )";
 
 if ($conn->query($sql) === TRUE) {
@@ -94,8 +91,7 @@ author VARCHAR(50) NOT NULL,
 genre VARCHAR(50) NOT NULL,
 start_Date_Time DATETIME NOT NULL,
 end_Date_Time DATETIME NOT NULL,
-CONSTRAINT Fk_UserID FOREIGN KEY (email),
-REFERENCES User(email),
+FOREIGN KEY (email) REFERENCES User(email)
 )";
 
 if ($conn->query($sql) === TRUE) {
@@ -105,7 +101,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $sql = "CREATE TABLE TRANSACTION (
-id INT(6) UNSIGNED AUTO_INCREMENT, 
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 lender_email VARCHAR(50) NOT NULL,
 borrower_email VARCHAR(50) NOT NULL,
 book_Id INT(6) NOT NULL,
@@ -115,14 +111,10 @@ method_Of_Delivery VARCHAR(3) NOT NULL,
 location VARCHAR(100) NOT NULL,
 borrow_Review_Approve BOOLEAN,
 lender_Review_Approve BOOLEAN,
-PRIMARY KEY (lender_email,borrower_email,book_Id),
 CONSTRAINT chk_method CHECK (method_Of_Delivery IN ('HD','MCP','PK')),
-CONSTRAINT Fk_LenderID FOREIGN KEY (lender_email),
-REFERENCES User(email),
-CONSTRAINT Fk_BorrowerID FOREIGN KEY (borrower_email),
-REFERENCES User(email),
-CONSTRAINT Fk_BookID FOREIGN KEY (book_Id),
-REFERENCES Book(id),
+FOREIGN KEY (lender_email) REFERENCES User(email),
+FOREIGN KEY (borrower_email) REFERENCES User(email),
+FOREIGN KEY (book_Id) REFERENCES Book(id)
 )";
 
 if ($conn->query($sql) === TRUE) {
@@ -136,8 +128,7 @@ id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 borrower_email VARCHAR(50) NOT NULL,
 start_Date_Time DATETIME NOT NULL,
 end_Date_Time DATETIME NOT NULL,
-CONSTRAINT Fk_UserID FOREIGN KEY (borrower_email),
-REFERENCES User(email),
+FOREIGN KEY (borrower_email) REFERENCES User(email)
 )";
 
 if ($conn->query($sql) === TRUE) {
