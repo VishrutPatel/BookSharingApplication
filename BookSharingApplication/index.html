@@ -60,9 +60,9 @@
 
                     <div class="form-group col-md-4">
                         <label for="inputState">State</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>Select</option>
-                            <option></option>
+                        <select id="inputState" class="form-control" ng-model="state">
+                            <option>Select</option>
+                            <option ng-repeat="states in listOfStates">{{states}}</option>
                         </select>
                         <p class="text-danger" ng-show="stateInvalid" style="font-size:small;">*</p>
                     </div>

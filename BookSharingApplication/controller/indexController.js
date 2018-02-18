@@ -1,12 +1,16 @@
 var app = angular.module("mainApp",[]);
 
 app.controller('indexController',function($scope,$window){
+    $scope.listOfStates = ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
+        "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR",
+        "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
     $scope.email = '';
     $scope.firstName = '';
     $scope.lastName = '';
     $scope.addr1 = '';
     $scope.city = '';
     $scope.zipCode = '';
+    $scope.state = '';
     $scope.password = '';
     $scope.retypePassword= '';
     $scope.checkValidation = function(){
@@ -53,6 +57,10 @@ app.controller('indexController',function($scope,$window){
         }
         if($scope.retypePassword.length==0){
             $scope.retypePasswordInvalid = true;
+            allValid = false;
+        }
+        if($scope.state.length==0 || $scope.state=="Select"){
+            $scope.stateInvalid = true;
             allValid = false;
         }
         if(allValid){
