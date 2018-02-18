@@ -65,9 +65,9 @@ app.controller('indexController',function($scope,$window){
         }
         if(allValid){
             var patternValid = true;
-            var regex = "/[a-zA-Z0-9]+@ncsu\.edu/g";
+            var regex = new RegExp("[a-zA-Z0-9]+@ncsu\.edu");
             if(!regex.test($scope.email)){
-                $scope.emailPatternInvalid;
+                $scope.emailPatternInvalid = true   ;
                 patternValid = false;
             }
             if($scope.password!=$scope.retypePassword){
