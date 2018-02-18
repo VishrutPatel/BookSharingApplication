@@ -9,15 +9,14 @@ if($conn==false){
 }
 else {
     //Execute a procedure call to validate signup (Check for already present users)
-    $stmt = $conn->prepare("CALL ValidateSignUp(?)");
     //get a json file and decode it
     $json = file_get_contents("php://input");
     $data = json_decode($json);
-    $stmt->bindParam(1, $data, PDO::PARAM_STR);
-    $stmt->execute();
+    $user="";
+    $stmt=$conn->query("CALL ValidateSignUp('".$user."',@p1);");
+    $stmt2=$conn->query("SELECT @p1 FROM VALIDATE");
     //The procedure returns only a bool value.
-    $result = $stmt->fetchAll();
-
+    $result = $stmt2->fetch();
     if ($result == true) {
         //return a true value to the front-end for a go ahead to signup
     } else {
