@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/BookSharingApplication/css/style.css">
+    <link rel="stylesheet" href="../BookSharingApplication/css/style.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -11,75 +11,92 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNavSignUp()">&times;</a>
     <div class="overlay-content">
         <div class="container" style="font-size: x-large; color: #f1f1f1;">
-            <form action="action_page.php" class="form inline">
+            <form class="form inline">
                 <h1 class="display-3">Sign Up</h1>
                 <hr>
                 <div class="form-row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control"placeholder="Email" name="email" required>
+                            <input type="text" class="form-control" placeholder="Email" name="email" ng-model = "email">
+                            <p class="text-danger" ng-show="emailInvalid" style="font-size:small;">*</p>
+                            <p class="text-danger" ng-show="emailPatternInvalid" style="font-size:small;">Please enter @ncsu.edu email id</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="firstName">First Name</label>
-                            <input type="text" class="form-control"placeholder="FirstName" name="firstName" required>
+                            <input type="text" class="form-control"placeholder="FirstName" name="firstName" ng-model="firstName">
+                            <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control"placeholder="Email" name="lastName" required>
+                            <input type="text" class="form-control"placeholder="Email" name="lastName" ng-model = "lastName">
+                            <p class="text-danger" ng-show="lastNameInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="addr1">Address 1</label>
-                            <input type="text" class="form-control"placeholder="Address line 1" name="addr1" required>
+                            <input type="text" class="form-control"placeholder="Address line 1" name="addr1" ng-model = "addr1">
+                            <p class="text-danger" ng-show="addr1Invalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="addr2">Address 2</label>
-                            <input type="text" class="form-control"placeholder="Address line 2" name="addr2" >
+                            <input type="text" class="form-control"placeholder="Address line 2" name="addr2" ng-model = "addr2" >
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="city">City</label>
-                            <input type="text" class="form-control"placeholder="City" name="city" >
+                            <input type="text" class="form-control"placeholder="City" name="city" ng-model = "city">
+                            <p class="text-danger" ng-show="cityInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
+
                     <div class="form-group col-md-4">
                         <label for="inputState">State</label>
                         <select id="inputState" class="form-control">
                             <option selected>Select</option>
                             <option></option>
                         </select>
+                        <p class="text-danger" ng-show="stateInvalid" style="font-size:small;">*</p>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="zipCode">Zipcode</label>
-                            <input type="text" class="form-control"placeholder="zipCode" name="zipCode" >
+                            <input type="text" class="form-control"placeholder="zipCode" name="zipCode" ng-model = "zipCode">
+                            <p class="text-danger" ng-show="zipCodeInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="offset-md-2 col-md-4">
                         <div class="form-group">
                             <label for="psw">Password</label>
-                            <input type="password" class="form-control" placeholder="Password" name="psw" required>
+                            <input type="password" class="form-control" placeholder="Password" name="psw" ng-model = "password">
+                            <p class="text-danger" ng-show="passwordInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="psw-repeat">Repeat Password</label>
-                            <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat" required>
+                            <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat" ng-model = "retypePassword">
+                            <p class="text-danger" ng-show="retypePasswordInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
+                    <div class="offset-md-4 col-md-4">
+                        <p class="text-danger" ng-show="passwordMismatchError" style="font-size:small;">Passwords don't match</p>
+                    </div>
+                    <div class="offset-md-4 col-md-4">
+                        <p class="text-danger" ng-show="zipCodeLengthError" style="font-size:small;">Zipcode must be of length 5</p>
+                    </div>
                 </div>
-
+                <p class="text-danger" ng-show="formError" style="font-size:small;">Please solve the above errors</p>
                 <div class="clearfix">
-                    <button type="submit" class="btn btn-default" >Sign Up</button>
+                    <button class="btn btn-default" ng-click="checkValidation()">Sign Up</button>
                 </div>
             </form>
         </div>
@@ -141,7 +158,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-cookies.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
-<script type="text/javascript" src="/BookSharingApplication/controller/indexController.js"></script>
+<script type="text/javascript" src="/BookSharingApplication/BookSharingApplication/controller/indexController.js"></script>
 
 <script>
     function openNavSignUp() {
