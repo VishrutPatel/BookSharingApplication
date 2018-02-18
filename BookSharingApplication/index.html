@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../BookSharingApplication/css/style.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-color: #f9f9f9;" ng-app="mainApp" ng-controller="indexController">
+<div id="myNavSignUp" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNavSignUp()">&times;</a>
+    <div class="overlay-content">
+        <div class="container" style="font-size: x-large; color: #f1f1f1;">
+            <form class="form inline">
+                <h1 class="display-3">Sign Up</h1>
+                <hr>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" placeholder="Email" name="email" ng-model = "email">
+                            <p class="text-danger" ng-show="emailInvalid" style="font-size:small;">*</p>
+                            <p class="text-danger" ng-show="emailPatternInvalid" style="font-size:small;">Please enter @ncsu.edu email id</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control"placeholder="FirstName" name="firstName" ng-model="firstName">
+                            <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control"placeholder="Email" name="lastName" ng-model = "lastName">
+                            <p class="text-danger" ng-show="lastNameInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="addr1">Address 1</label>
+                            <input type="text" class="form-control"placeholder="Address line 1" name="addr1" ng-model = "addr1">
+                            <p class="text-danger" ng-show="addr1Invalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="addr2">Address 2</label>
+                            <input type="text" class="form-control"placeholder="Address line 2" name="addr2" ng-model = "addr2" >
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control"placeholder="City" name="city" ng-model = "city">
+                            <p class="text-danger" ng-show="cityInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Select</option>
+                            <option></option>
+                        </select>
+                        <p class="text-danger" ng-show="stateInvalid" style="font-size:small;">*</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="zipCode">Zipcode</label>
+                            <input type="text" class="form-control"placeholder="zipCode" name="zipCode" ng-model = "zipCode">
+                            <p class="text-danger" ng-show="zipCodeInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="offset-md-2 col-md-4">
+                        <div class="form-group">
+                            <label for="psw">Password</label>
+                            <input type="password" class="form-control" placeholder="Password" name="psw" ng-model = "password">
+                            <p class="text-danger" ng-show="passwordInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="psw-repeat">Repeat Password</label>
+                            <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat" ng-model = "retypePassword">
+                            <p class="text-danger" ng-show="retypePasswordInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="offset-md-4 col-md-4">
+                        <p class="text-danger" ng-show="passwordMismatchError" style="font-size:small;">Passwords don't match</p>
+                    </div>
+                    <div class="offset-md-4 col-md-4">
+                        <p class="text-danger" ng-show="zipCodeLengthError" style="font-size:small;">Zipcode must be of length 5</p>
+                    </div>
+                </div>
+                <p class="text-danger" ng-show="formError" style="font-size:small;">Please solve the above errors</p>
+                <div class="clearfix">
+                    <button class="btn btn-default" ng-click="checkValidation()">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="myNavLogin" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNavLogin()">&times;</a>
+    <div class="overlay-content">
+        <div class="container" style="font-size: x-large; color: #f1f1f1;">
+            <form action="action_page.php" class="form inline">
+                <h1 class="display-3">Login</h1>
+                <hr>
+                <div class="form-row">
+                    <div class="offset-md-4 col-md-4">
+                        <div class="form-group">
+                            <label for="email" >Email</label>
+                            <input type="text" class="form-control"placeholder="Email" name="email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="offset-md-4 col-md-4">
+                        <div class="form-group">
+                            <label for="psw">Password</label>
+                            <input type="password" class="form-control" placeholder="Password" name="psw" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <button type="submit" class="btn btn-default" >Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #d9534f;">
+    <a class="navbar-brand" href="#" style="font-size: x-large;">WolfShare</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button type="button" class="btn btn-outline-dark btn-lg" onclick="openNavLogin()">Login</button>
+            &nbsp;
+            <button type="button" class="btn btn-outline-dark btn-lg" onclick="openNavSignUp()">Sign Up</button>
+        </form>
+    </div>
+</nav>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<!-- Then include bootstrap js -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-cookies.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+<script type="text/javascript" src="/BookSharingApplication/BookSharingApplication/controller/indexController.js"></script>
+
+<script>
+    function openNavSignUp() {
+        document.getElementById("myNavSignUp").style.width = "100%";
+    }
+
+    function closeNavSignUp() {
+        document.getElementById("myNavSignUp").style.width = "0%";
+    }
+    function openNavLogin() {
+        document.getElementById("myNavLogin").style.width = "100%";
+    }
+
+    function closeNavLogin() {
+        document.getElementById("myNavLogin").style.width = "0%";
+    }
+</script>
+</body>
+</html>
