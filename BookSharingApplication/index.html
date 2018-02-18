@@ -106,14 +106,15 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNavLogin()">&times;</a>
     <div class="overlay-content">
         <div class="container" style="font-size: x-large; color: #f1f1f1;">
-            <form action="action_page.php" class="form inline">
+            <form class="form inline">
                 <h1 class="display-3">Login</h1>
                 <hr>
                 <div class="form-row">
                     <div class="offset-md-4 col-md-4">
                         <div class="form-group">
                             <label for="email" >Email</label>
-                            <input type="text" class="form-control"placeholder="Email" name="email" required>
+                            <input type="text" class="form-control" placeholder="Email" name="email" ng-model="emailLogin">
+                            <p class="text-danger" ng-show="emailLoginInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                 </div>
@@ -121,12 +122,15 @@
                     <div class="offset-md-4 col-md-4">
                         <div class="form-group">
                             <label for="psw">Password</label>
-                            <input type="password" class="form-control" placeholder="Password" name="psw" required>
+                            <input type="password" class="form-control" placeholder="Password" name="psw" ng-model="passwordLogin">
+                            <p class="text-danger" ng-show="passwordLoginInvalid" style="font-size:small;">*</p>
+                            <a><div ng-click="openSecCode()" style="font-size: x-small; cursor: pointer;">Forgot password</div></a>
                         </div>
                     </div>
                 </div>
+                <p class="text-danger" ng-show="loginFormError" style="font-size:small;">Please solve the above errors</p>
                 <div class="clearfix">
-                    <button type="submit" class="btn btn-default" >Login</button>
+                    <button class="btn btn-default" ng-click="checkValidationLogin()">Login</button>
                 </div>
             </form>
         </div>
@@ -149,6 +153,13 @@
     </div>
 </nav>
 
+<div class="card border-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header">Header</div>
+    <div class="card-body text-dark">
+        <h5 class="card-title">Dark card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+</div>s
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
