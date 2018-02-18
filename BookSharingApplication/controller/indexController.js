@@ -1,12 +1,16 @@
 var app = angular.module("mainApp",[]);
 
 app.controller('indexController',function($scope,$window){
+    $scope.listOfStates = ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
+        "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR",
+        "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
     $scope.email = '';
     $scope.firstName = '';
     $scope.lastName = '';
     $scope.addr1 = '';
     $scope.city = '';
     $scope.zipCode = '';
+    $scope.state = '';
     $scope.password = '';
     $scope.retypePassword= '';
     $scope.checkValidation = function(){
@@ -55,8 +59,17 @@ app.controller('indexController',function($scope,$window){
             $scope.retypePasswordInvalid = true;
             allValid = false;
         }
+        if($scope.state.length==0 || $scope.state=="Select"){
+            $scope.stateInvalid = true;
+            allValid = false;
+        }
         if(allValid){
             var patternValid = true;
+            var regex = new RegExp("[a-zA-Z0-9]+@ncsu\.edu");
+            if(!regex.test($scope.email)){
+                $scope.emailPatternInvalid = true   ;
+                patternValid = false;
+            }
             if($scope.password!=$scope.retypePassword){
                 $scope.passwordMismatchError = true;
                 patternValid = false;
@@ -76,4 +89,30 @@ app.controller('indexController',function($scope,$window){
             $scope.formError = true;
         }
     }
+    $scope.openSecCode = function(){
+        $window.open('../BookSharingApplication/partials/forgotPassword.html')
+    }
+    $scope.emailLogin = '';
+    $scope.passwordLogin = '';
+    $scope.checkValidationLogin = function(){
+        $scope.emailLoginInvalid = false;
+        $scope.passwordLoginInvalid  = false;
+        $scope.loginFormError = false;
+        var loginValid = true;
+        if($scope.emailLogin.length == 0){
+            $scope.emailLoginInvalid = true;
+            loginValid = false;
+        }
+        if($scope.passwordLogin.length == 0){
+            $scope.passwordLoginInvalid = true;
+            loginValid = false;
+        }
+        if(loginValid){
+            $window.location.href = '../BookSharingApplication/partials/userPage.html';
+        }
+        else{
+            $scope.loginFormError = true;
+        }
+    }
+
 });
