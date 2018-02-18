@@ -89,4 +89,30 @@ app.controller('indexController',function($scope,$window){
             $scope.formError = true;
         }
     }
+    $scope.openSecCode = function(){
+        $window.open('../BookSharingApplication/partials/forgotPassword.html')
+    }
+    $scope.emailLogin = '';
+    $scope.passwordLogin = '';
+    $scope.checkValidationLogin = function(){
+        $scope.emailLoginInvalid = false;
+        $scope.passwordLoginInvalid  = false;
+        $scope.loginFormError = false;
+        var loginValid = true;
+        if($scope.emailLogin.length == 0){
+            $scope.emailLoginInvalid = true;
+            loginValid = false;
+        }
+        if($scope.passwordLogin.length == 0){
+            $scope.passwordLoginInvalid = true;
+            loginValid = false;
+        }
+        if(loginValid){
+            $window.location.href = '../BookSharingApplication/partials/userPage.html';
+        }
+        else{
+            $scope.loginFormError = true;
+        }
+    }
+
 });
