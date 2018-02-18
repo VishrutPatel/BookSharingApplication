@@ -2,7 +2,7 @@ delimiter //
 
 
 CREATE PROCEDURE `validateSignUp`(
-IN inptemail varchar(255),
+IN inptemail varchar(50),
       OUT validate int 
  )
  
