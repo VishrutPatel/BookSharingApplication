@@ -158,14 +158,14 @@
         <div class="offset-md-2 col-md-8">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search using</button>
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search using</button>
                     <div class="dropdown-menu">
                         <div ng-repeat="category in searchFilter">
-                            <a class="dropdown-item" ng-click="categorySelect(category)">{{category}}</a>
+                            <a class="dropdown-item" ng-click="categorySelect(category)" style="cursor: pointer;">{{category}}</a>
                         </div>
                     </div>
                 </div>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <input type="text" class="form-control" aria-label="Text input with dropdown button" ng-disabled = "!dropdownSelect">
                 <div class="input-group-append" ng-show="dropdownSelect">
                     <span class="input-group-text">{{showSelected}}</span>
                 </div>

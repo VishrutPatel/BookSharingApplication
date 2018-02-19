@@ -71,7 +71,7 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error creating table: " . $conn->error;
 }
-$sql = "CREATE TABLE Book (
+$sql = "CREATE TABLE Book.php (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 email VARCHAR(50) NOT NULL,
 title VARCHAR(50) NOT NULL,
@@ -82,7 +82,7 @@ end_Date_Time DATETIME NOT NULL,
 FOREIGN KEY (email) REFERENCES User(email)
 )";
 if ($conn->query($sql) === TRUE) {
-    echo "Table Book created successfully";
+    echo "Table Book.php created successfully";
 } else {
     echo "Error creating table: " . $conn->error;
 }
@@ -100,7 +100,7 @@ lender_Review_Approve BOOLEAN,
 CONSTRAINT chk_method CHECK (method_Of_Delivery IN ('HD','MCP','PK')),
 FOREIGN KEY (lender_email) REFERENCES User(email),
 FOREIGN KEY (borrower_email) REFERENCES User(email),
-FOREIGN KEY (book_Id) REFERENCES Book(id)
+FOREIGN KEY (book_Id) REFERENCES Book.php(id)
 )";
 if ($conn->query($sql) === TRUE) {
     echo "Table TRANSACTION created successfully";
@@ -115,7 +115,7 @@ end_Date_Time DATETIME NOT NULL,
 FOREIGN KEY (borrower_email) REFERENCES User(email)
 )";
 if ($conn->query($sql) === TRUE) {
-    echo "Table Book created successfully";
+    echo "Table Book.php created successfully";
 } else {
     echo "Error creating table: " . $conn->error;
 }

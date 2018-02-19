@@ -22,7 +22,7 @@ class Book{
     function read(){
  
     // select all query
-        $query = "SELECT * FROM " . $this->table_name . "p WHERE ".p.start_Date_Time - date("m-d-Y h-i-sa")>= 0"";
+        $query = "SELECT * FROM " . $this->table_name . "p WHERE ".p.start_Date_Time - date("m-d-Y h-i-sa")>= 0;
  
     // prepare query statement
         $stmt = $this->conn->prepare($query);
