@@ -1,6 +1,6 @@
 delimiter //
 
-CREATE PROCEDURE `validateLogin`(
+CREATE PROCEDURE `retrieveBorrowRequests`(
 IN inptemail varchar(50),
 OUT otptborroweremail varchar(),
 OUT otptratings FLOAT(3,2)
