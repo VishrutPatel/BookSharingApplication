@@ -17,5 +17,4 @@ BEGIN
       (email,title,author,genre,start_Date_Time,end_Date_Time)
       values 
       (inptemail,inpttitle,inptauthor,inptgenre,inptstartdatetime,inptenddatetime);
-      return 1;
 END//
