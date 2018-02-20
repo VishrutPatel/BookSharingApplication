@@ -31,7 +31,7 @@ else {
     $endtime=strtotime($userenddate);
     $enddate=date('YYYY-MM-DD',$endtime);
     $stmt=$conn->query("CALL AddBookForLending('".$email."','".$title."','".$author."','".$genre."','".$startdate."','".$starttime."',@p1");
-    $stmt2=$conn->query("SELECT @p1 FROM VALIDATE");
+    $stmt2=$conn->query("SELECT @p1 FROM VALRETURN");
     //The procedure returns only a bool value.
     $result = $stmt2->fetch();
     if ($result == true) {
