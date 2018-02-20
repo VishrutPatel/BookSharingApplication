@@ -109,10 +109,12 @@ if ($conn->query($sql) === TRUE) {
 }
 $sql = "CREATE TABLE BorrowRequest (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+book_Id INT(6) NOT NULL,
 borrower_email VARCHAR(50) NOT NULL,
 start_Date_Time DATETIME NOT NULL,
 end_Date_Time DATETIME NOT NULL,
-FOREIGN KEY (borrower_email) REFERENCES User(email)
+FOREIGN KEY (borrower_email) REFERENCES User(email),
+FOREIGN KEY (book_Id) REFERENCES Book(id)
 )";
 if ($conn->query($sql) === TRUE) {
     echo "Table Book.php created successfully";
