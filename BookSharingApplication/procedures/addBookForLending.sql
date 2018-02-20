@@ -6,7 +6,8 @@ IN inpttitle VARCHAR(30),
 IN inptgenre VARCHAR(100),
 IN inptauthor VARCHAR(100),
 IN inptstartdatetime DATETIME,
-IN inptenddatetime DATETIME
+IN inptenddatetime DATETIME,
+OUT check INT
  )
  
  
@@ -15,6 +16,6 @@ BEGIN
       insert into book 
       (email,title,author,genre,start_Date_Time,end_Date_Time)
       values 
-      (inptemail,inpttitle,inptauthor,inptauthor,inptgenre,inptstartdatetime,inptenddatetime);
-      
+      (inptemail,inpttitle,inptauthor,inptgenre,inptstartdatetime,inptenddatetime);
+      return 1;
 END//
