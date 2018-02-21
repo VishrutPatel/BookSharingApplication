@@ -33,7 +33,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control"placeholder="Email" name="lastName" ng-model = "lastName">
+                            <input type="text" class="form-control"placeholder="LastName" name="lastName" ng-model = "lastName">
                             <p class="text-danger" ng-show="lastNameInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
@@ -71,6 +71,7 @@
                             <label for="zipCode">Zipcode</label>
                             <input type="text" class="form-control"placeholder="zipCode" name="zipCode" ng-model = "zipCode">
                             <p class="text-danger" ng-show="zipCodeInvalid" style="font-size:small;">*</p>
+                            <p class="text-danger" ng-show="zipCodeLengthError" style="font-size:small;">Zipcode must be of length 5</p>
                         </div>
                     </div>
                     <div class="offset-md-2 col-md-4">
@@ -87,16 +88,25 @@
                             <p class="text-danger" ng-show="retypePasswordInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
+                    <div class="offset-md-4 col-md-4" ng-show="enterSecCode">
+                        <div class="form-group">
+                            <label for="secCode">Enter Security code</label>
+                            <input type="text" class="form-control" placeholder="Enter security code" name="secCode" ng-model = "secCode">
+                            <p class="text-success" style="font-size:small;">Enter security code sent to your mail</p>
+                        </div>
+                    </div>
                     <div class="offset-md-4 col-md-4">
                         <p class="text-danger" ng-show="passwordMismatchError" style="font-size:small;">Passwords don't match</p>
                     </div>
-                    <div class="offset-md-4 col-md-4">
-                        <p class="text-danger" ng-show="zipCodeLengthError" style="font-size:small;">Zipcode must be of length 5</p>
-                    </div>
+
                 </div>
                 <p class="text-danger" ng-show="formError" style="font-size:small;">Please solve the above errors</p>
-                <div class="clearfix">
-                    <button class="btn btn-default" ng-click="checkValidation()">Sign Up</button>
+                <p class="text-danger" ng-show="userExistsError" style="font-size:small;">Seems like you are already a member of WolfShare</p>
+                <div class="clearfix" ng-show="showVerifCodeButton">
+                    <button class="btn btn-default" ng-click="checkValidation()">Get Verification Code</button>
+                </div>
+                <div class="clearfix" ng-show="showSignUpButton">
+                    <button class="btn btn-default" ng-click="submitSignUpForm()">SignUp</button>
                 </div>
             </form>
         </div>
