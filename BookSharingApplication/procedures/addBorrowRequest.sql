@@ -1,6 +1,6 @@
 delimiter //
 
-CREATE PROCEDURE `addBookForLending`(
+CREATE PROCEDURE `addBorrowRequest`(
 IN inptborroweremail VARCHAR(50),
 IN inptbookid VARCHAR(30),
 IN inptstartdatetime DATETIME,
@@ -15,5 +15,5 @@ BEGIN
       (book_Id,borrower_email,start_Date_Time,end_Date_Time)
       values 
       (inptborroweremail,inptbookid,inptstartdatetime,inptenddatetime);
-      return 1;
+
 END//
