@@ -2,7 +2,7 @@ delimiter //
 
 CREATE PROCEDURE `retrieveBorrowRequests`(
 IN inptemail varchar(50),
-OUT otptborroweremail varchar(),
+OUT otptborroweremail varchar(50),
 OUT otptratings FLOAT(3,2)
  )
  
