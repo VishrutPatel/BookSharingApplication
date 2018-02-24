@@ -151,7 +151,7 @@ app.controller('indexController',function($scope,$window,$http){
             $scope.secCodeLengthError = true;
         }
         else{
-            $window.location.href = '../BookSharingApplication/partials/landingPage.html';
+
         }
     }
 });
