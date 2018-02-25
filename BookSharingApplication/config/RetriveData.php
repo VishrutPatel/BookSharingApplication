@@ -17,7 +17,6 @@ $book = new Book($db);
 // query products
 $stmt = $book->read();
 $num = $stmt->rowCount();
-echo $num;
 // check if more than 0 record found
 if($num>0){
  
@@ -47,7 +46,7 @@ if($num>0){
         array_push($products_arr["records"], $product_item);
     }
  
-    echo json_encode($products_arr);
+    echo json_encode($products_arr["records"],JSON_PRETTY_PRINT);
 }
  
 else{

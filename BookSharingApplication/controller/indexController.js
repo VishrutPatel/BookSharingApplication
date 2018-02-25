@@ -85,7 +85,6 @@ app.controller('indexController',function($scope,$window,$http){
             }
             if(patternValid){
                 var formData = {email:$scope.email};
-                console.log
                 $http({
                     method: "POST",
                     url: "config/signup.php",
@@ -153,5 +152,15 @@ app.controller('indexController',function($scope,$window,$http){
         else{
 
         }
+    }
+
+    $scope.showBooks = function(){
+        $http({
+            method:"GET",
+            url:"config/RetriveData.php"
+        }).then(function(response){
+            $scope.booksList = response.data;
+        },function(response){
+        });
     }
 });
