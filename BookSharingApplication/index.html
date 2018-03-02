@@ -106,6 +106,8 @@
                 <div class="clearfix" ng-show="showVerifCodeButton">
                     <button class="btn btn-default" ng-click="checkValidation()">Get Verification Code</button>
                 </div>
+                <p class="text-danger" ng-show="secCodeReq" style="font-size:small;">Verification code is required</p>
+                <p class="text-danger" ng-show="secCodeLengthError" style="font-size:small;">Length of code is 5</p>
                 <div class="clearfix" ng-show="showSignUpButton">
                     <button class="btn btn-default" ng-click="submitSignUpForm()">SignUp</button>
                 </div>
@@ -176,7 +178,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="text" class="form-control bg-light" aria-label="Text input with dropdown button" ng-disabled = "!dropdownSelect">
+                <input type="text" class="form-control bg-light" aria-label="Text input with dropdown button" ng-disabled = "!dropdownSelect" ng-model="searchBook">
                 <div class="input-group-append" ng-show="dropdownSelect">
                     <span class="input-group-text rounded-0 bg-dark text-white">{{showSelected}}</span>
                 </div>
@@ -184,7 +186,7 @@
         </div>
     </div>
     <div class="row" style="padding-top: 2%;">
-        <div class="col-md-6" ng-repeat="book in booksList" style="padding: 1%;">
+        <div class="col-md-6" ng-repeat="book in booksList | customBookFilter:{term:searchBook, type:showSelected} | filter: searchBook" style="padding: 1%;">
             <div class="card border-dark rounded-0 z-depth-3">
                 <div class="card-header rounded-0" style="background-color: black; color: white;">{{book.title}}</div>
                 <div class="card-body text-dark">

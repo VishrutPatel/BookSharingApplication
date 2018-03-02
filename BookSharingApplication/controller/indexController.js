@@ -4,7 +4,7 @@ app.controller('indexController',function($scope,$window,$http){
     $scope.listOfStates = ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
         "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR",
         "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
-    $scope.searchFilter = ["Author","Title","Genre"]
+    $scope.searchFilter = ["author","title","genre"]
     $scope.email = '';
     $scope.firstName = '';
     $scope.lastName = '';
@@ -14,6 +14,7 @@ app.controller('indexController',function($scope,$window,$http){
     $scope.state = '';
     $scope.password = '';
     $scope.retypePassword= '';
+    $scope.showVerifCodeButton = true;
     $scope.checkValidation = function(){
         $scope.emailInvalid = false;
         $scope.firstNameInvalid = false;
@@ -30,7 +31,6 @@ app.controller('indexController',function($scope,$window,$http){
         $scope.userExists = false;
         $scope.inputSecCode = false;
         $scope.showSignUpButton = false;
-        $scope.showVerifCodeButton = true;
         var allValid = true;
         if($scope.email.length==0){
             $scope.emailInvalid = true;
@@ -97,6 +97,7 @@ app.controller('indexController',function($scope,$window,$http){
                         $scope.enterSecCode = true;
                         $scope.showSignUpButton = true;
                         $scope.showVerifCodeButton = false;
+                        $scope.userExistsError = false;
                     }
                 },function(response){
                     console.log(response.data.message);
@@ -150,17 +151,33 @@ app.controller('indexController',function($scope,$window,$http){
             $scope.secCodeLengthError = true;
         }
         else{
-
+            $window.location.href = "partials/userPage.html"
         }
     }
-
     $scope.showBooks = function(){
+
         $http({
             method:"GET",
             url:"config/RetriveData.php"
         }).then(function(response){
+            console.log(response.data);
             $scope.booksList = response.data;
         },function(response){
         });
     }
+});
+
+app.filter('customBookFilter',function(){
+   return function (input, option) {
+       if (!option.type || !option.term) {
+           return input;
+       }
+       var result = [];
+       angular.forEach(input,function (val, key) {
+           if(val[option.type].indexOf(option.term)>-1){
+               result.push(val);
+           }
+       })
+       return result;
+   } 
 });
