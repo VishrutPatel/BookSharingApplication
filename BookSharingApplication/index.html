@@ -142,6 +142,7 @@
                     </div>
                 </div>
                 <p class="text-danger" ng-show="loginFormError" style="font-size:small;">Please solve the above errors</p>
+                <div ng-show="loginError"><p class="text-danger"  style="font-size:small;">Seems like you are not registered with Wolfshare<br><a><div onclick="openNavLogin()" style="font-size: x-small; cursor: pointer;">Register here</div></a></p></div>
                 <div class="clearfix">
                     <button class="btn btn-default" ng-click="checkValidationLogin()">Login</button>
                 </div>
@@ -149,7 +150,7 @@
         </div>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top">
     <a class="navbar-brand text-dark" href="#" style="font-size: x-large;">WolfShare</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

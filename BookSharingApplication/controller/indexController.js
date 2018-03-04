@@ -129,8 +129,27 @@ app.controller('indexController',function($scope,$window,$http){
             $scope.passwordLoginInvalid = true;
             loginValid = false;
         }
+        $scope.loginError = false;
         if(loginValid){
-            $window.location.href = '../BookSharingApplication/partials/userPage.html';
+            var loginFormData = {loginEmail:$scope.emailLogin, loginPassword:$scope.passwordLogin};
+            $http({
+                method: "POST",
+                url: "config/login.php",
+                data: loginFormData
+            }).then(function(response){
+                if(response.data.message=="Found"){
+                    $window.sessionStorage.setItem("userEmail",$scope.emailLogin);
+                    $window.sessionStorage.setItem("userPassword",$scope.passwordLogin);
+                    $window.location.href = "partials/userPage.html"
+                }
+                else{
+                    $scope.loginError = true;
+                }
+            },function(response){
+                console.log(response.data.message);
+            });
+
+
         }
         else{
             $scope.loginFormError = true;
@@ -160,7 +179,6 @@ app.controller('indexController',function($scope,$window,$http){
             method:"GET",
             url:"config/RetriveData.php"
         }).then(function(response){
-            console.log(response.data);
             $scope.booksList = response.data;
         },function(response){
         });
