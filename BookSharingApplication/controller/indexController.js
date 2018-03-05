@@ -192,7 +192,7 @@ app.filter('customBookFilter',function(){
        }
        var result = [];
        angular.forEach(input,function (val, key) {
-           if(val[option.type].indexOf(option.term)>-1){
+           if(val[option.type].toLowerCase().indexOf(option.term.toLowerCase())>-1){
                result.push(val);
            }
        })
