@@ -55,7 +55,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `retrieveBorrowRequests` (IN `inptem
 SELECT b.email,b.ratings
       FROM borrower b, borrowrequest br, book bk
       WHERE b.email = br.borroweremail AND bk.id = br.book_Id AND bk.email = inptemail$$
+      
+CREATE DEFINER=`root`@`localhost` PROCEDURE `signUpValidated` (IN `inptemail` VARCHAR(50))  MODIFIES SQL DATA
+UPDATE user SET verification_status = 1 WHERE email = inptemail$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `validatedOrNot` (IN `inptemail` VARCHAR(50), OUT `trueorFalse` BOOLEAN)  READS SQL DATA
+select verification_status into trueorFalse
+      from User
+      where inptemail = email$$
+      
 CREATE DEFINER=`root`@`localhost` PROCEDURE `validateLogin` (IN `inptemail` VARCHAR(50), IN `inptpass` VARCHAR(30), OUT `validate` INT)  READS SQL DATA
 BEGIN
       
