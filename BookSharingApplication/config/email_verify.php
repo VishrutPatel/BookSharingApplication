@@ -10,12 +10,13 @@ $mail->Host="smtp.gmail.com";
 $mail->Port=465;
 $mail->SMTPSecure="ssl";
 $mail->SMTPAuth=true;
-$mail->Username="ncwolfshare@gmail.com";
+$mail->Username="wolfsharenc@gmail.com";
+$mail->Password="9197375362";
 
 
-$mail->From="ncwolfshare@gmail.com";
+$mail->From="wolfsharenc@gmail.com";
 $mail->FromName="The WolfShare Team";
-$mail->AddAddress("nilaykapadia18@gmail.com","Nilay Kapadia");
+$mail->AddAddress("vnpatel@ncsu.edu","Nilay Kapadia");
 $mail->Subject="Security Code for Wolfware";
 $code=rand(10001,99999);
 //AddSignUpInformation

@@ -46,7 +46,7 @@ insert into user (firstname, lastname, addr1, addr2, city, state, zipcode, email
 CREATE DEFINER=`root`@`localhost` PROCEDURE `displayBookSearchResult` (IN `inptstartdate` DATETIME, IN `inptenddate` DATETIME, OUT `email` VARCHAR(50), OUT `title` VARCHAR(50), OUT `author` VARCHAR(50), OUT `genre` VARCHAR(50), OUT `start_Date_Time` DATETIME, OUT `end_Date_Time` DATETIME)  READS SQL DATA
 select *
       from book
-      where inptbookname = title AND inptstartdate >= start_Date_Time AND inptenddate <= end_Date_Time
+      where inptbookname = title AND inptstartdate >= start_Date_Time AND inptenddate <= end_Date_Time$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `forgotPassword` (IN `inptemail` VARCHAR(50), IN `inptnewpass` VARCHAR(30))  MODIFIES SQL DATA
 UPDATE user SET password = inptnewpass WHERE email = inptemail$$
