@@ -21,7 +21,6 @@ class Book{
 
     function read()
     {
-
         // select all query
         $query = "SELECT * FROM " . $this->table_name . " WHERE timestampdiff(day, CURRENT_TIMESTAMP, start_Date_Time)>=0";
 

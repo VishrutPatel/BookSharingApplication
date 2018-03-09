@@ -27,7 +27,6 @@ else {
     $userenddate="";
     $starttime=strtotime($userstartdate);
     $startdate=date('YYYY-MM-DD',$starttime);
-
     $endtime=strtotime($userenddate);
     $enddate=date('YYYY-MM-DD',$endtime);
     $stmt=$conn->query("CALL AddBookForLending('".$email."','".$title."','".$author."','".$genre."','".$startdate."','".$starttime."',@p1");
