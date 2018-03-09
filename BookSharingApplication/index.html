@@ -4,8 +4,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../BookSharingApplication/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+    <link rel="icon" href="img/icon.gif">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>WOLFSHARE</title>
 </head>
 <body style="background-color: #f9f9f9;" ng-app="mainApp" ng-controller="indexController" ng-init = "showBooks()">
 <div id="myNavSignUp" class="overlay">
@@ -13,13 +15,13 @@
     <div class="overlay-content">
         <div class="container" style="font-size: x-large; color: #f1f1f1;">
             <form class="form inline">
-                <h1 class="display-3">Sign Up</h1>
+                <h1 class="display-3">SIGN UP</h1>
                 <hr>
                 <div class="form-row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" placeholder="Email" name="email" ng-model = "email">
+                            <input type="text" class="form-control" placeholder="Email" name="email" ng-model = "email" style="border-radius: 0;">
                             <p class="text-danger" ng-show="emailInvalid" style="font-size:small;">*</p>
                             <p class="text-danger" ng-show="emailPatternInvalid" style="font-size:small;">Please enter @ncsu.edu email id</p>
                         </div>
@@ -27,41 +29,41 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="firstName">First Name</label>
-                            <input type="text" class="form-control"placeholder="FirstName" name="firstName" ng-model="firstName">
+                            <input type="text" class="form-control"placeholder="FirstName" name="firstName" ng-model="firstName" style="border-radius: 0;">
                             <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control"placeholder="LastName" name="lastName" ng-model = "lastName">
+                            <input type="text" class="form-control"placeholder="LastName" name="lastName" ng-model = "lastName" style="border-radius: 0;">
                             <p class="text-danger" ng-show="lastNameInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="addr1">Address 1</label>
-                            <input type="text" class="form-control"placeholder="Address line 1" name="addr1" ng-model = "addr1">
+                            <input type="text" class="form-control"placeholder="Address line 1" name="addr1" ng-model = "addr1" style="border-radius: 0;">
                             <p class="text-danger" ng-show="addr1Invalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="addr2">Address 2</label>
-                            <input type="text" class="form-control"placeholder="Address line 2" name="addr2" ng-model = "addr2" >
+                            <input type="text" class="form-control"placeholder="Address line 2" name="addr2" ng-model = "addr2" style="border-radius: 0;">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="city">City</label>
-                            <input type="text" class="form-control"placeholder="City" name="city" ng-model = "city">
+                            <input type="text" class="form-control"placeholder="City" name="city" ng-model = "city" style="border-radius: 0;">
                             <p class="text-danger" ng-show="cityInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
 
                     <div class="form-group col-md-4">
                         <label for="inputState">State</label>
-                        <select id="inputState" class="form-control" ng-model="state">
+                        <select id="inputState" class="form-control" ng-model="state" style="border-radius: 0;">
                             <option>Select</option>
                             <option ng-repeat="states in listOfStates">{{states}}</option>
                         </select>
@@ -70,7 +72,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="zipCode">Zipcode</label>
-                            <input type="text" class="form-control"placeholder="zipCode" name="zipCode" ng-model = "zipCode">
+                            <input type="text" class="form-control"placeholder="zipCode" name="zipCode" ng-model = "zipCode" style="border-radius: 0;">
                             <p class="text-danger" ng-show="zipCodeInvalid" style="font-size:small;">*</p>
                             <p class="text-danger" ng-show="zipCodeLengthError" style="font-size:small;">Zipcode must be of length 5</p>
                         </div>
@@ -78,22 +80,23 @@
                     <div class="offset-md-2 col-md-4">
                         <div class="form-group">
                             <label for="psw">Password</label>
-                            <input type="password" class="form-control" placeholder="Password" name="psw" ng-model = "password">
+                            <input type="password" class="form-control" placeholder="Password" name="psw" ng-model = "password" style="border-radius: 0;">
                             <p class="text-danger" ng-show="passwordInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="psw-repeat">Repeat Password</label>
-                            <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat" ng-model = "retypePassword">
+                            <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat" ng-model = "retypePassword" style="border-radius: 0;">
                             <p class="text-danger" ng-show="retypePasswordInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
                     <div class="offset-md-4 col-md-4" ng-show="enterSecCode">
                         <div class="form-group">
                             <label for="secCode">Enter Security code</label>
-                            <input type="text" class="form-control" placeholder="Enter security code" name="secCode" ng-model = "secCode">
+                            <input type="text" class="form-control" placeholder="Enter security code" name="secCode" ng-model = "secCode" style="border-radius: 0;">
                             <p class="text-success" style="font-size:small;">Enter security code sent to your mail</p>
+                            <p class="text-danger" ng-show="secCodeNullError" style="font-size:small;">Security code must be of length 5</p>
                         </div>
                     </div>
                     <div class="offset-md-4 col-md-4">
@@ -104,10 +107,13 @@
                 <p class="text-danger" ng-show="formError" style="font-size:small;">Please solve the above errors</p>
                 <p class="text-danger" ng-show="userExistsError" style="font-size:small;">Seems like you are already a member of WolfShare</p>
                 <div class="clearfix" ng-show="showVerifCodeButton">
-                    <button class="btn btn-default" ng-click="checkValidation()">Get Verification Code</button>
+                    <button class="btn btn-outline-danger btn-lg rounded-0" ng-click="checkValidation()">Get Verification Code</button>
                 </div>
+                <p class="text-danger" ng-show="secCodeReq" style="font-size:small;">Verification code is required</p>
+                <p class="text-danger" ng-show="secCodeLengthError" style="font-size:small;">Length of code is 5</p>
+                <p class="text-danger" ng-show="secCodeError" style="font-size:small;">Security code doesn't match the records</p>
                 <div class="clearfix" ng-show="showSignUpButton">
-                    <button class="btn btn-default" ng-click="submitSignUpForm()">SignUp</button>
+                    <button class="btn btn-outline-danger btn-lg rounded-0" ng-click="submitSignUpForm()">SignUp</button>
                 </div>
             </form>
         </div>
@@ -118,13 +124,13 @@
     <div class="overlay-content">
         <div class="container" style="font-size: x-large; color: #f1f1f1;">
             <form class="form inline">
-                <h1 class="display-3">Login</h1>
+                <h1 class="display-3">LOGIN</h1>
                 <hr>
                 <div class="form-row">
                     <div class="offset-md-4 col-md-4">
                         <div class="form-group">
                             <label for="email" >Email</label>
-                            <input type="text" class="form-control" placeholder="Email" name="email" ng-model="emailLogin">
+                            <input type="text" class="form-control" placeholder="Email" name="email" ng-model="emailLogin" style="border-radius: 0;">
                             <p class="text-danger" ng-show="emailLoginInvalid" style="font-size:small;">*</p>
                         </div>
                     </div>
@@ -133,22 +139,23 @@
                     <div class="offset-md-4 col-md-4">
                         <div class="form-group">
                             <label for="psw">Password</label>
-                            <input type="password" class="form-control" placeholder="Password" name="psw" ng-model="passwordLogin">
+                            <input type="password" class="form-control" placeholder="Password" name="psw" ng-model="passwordLogin" style="border-radius: 0;">
                             <p class="text-danger" ng-show="passwordLoginInvalid" style="font-size:small;">*</p>
                             <a><div ng-click="openSecCode()" style="font-size: x-small; cursor: pointer;">Forgot password</div></a>
                         </div>
                     </div>
                 </div>
                 <p class="text-danger" ng-show="loginFormError" style="font-size:small;">Please solve the above errors</p>
+                <div ng-show="loginError"><p class="text-danger"  style="font-size:small;">Seems like you are not registered with Wolfshare<br><a><div onclick="openNavLogin()" style="font-size: x-small; cursor: pointer;">Register here</div></a></p></div>
                 <div class="clearfix">
-                    <button class="btn btn-default" ng-click="checkValidationLogin()">Login</button>
+                    <button class="btn btn-outline-danger btn-lg rounded-0" ng-click="checkValidationLogin()" style="border-radius: 0">Login</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-    <a class="navbar-brand text-dark" href="#" style="font-size: x-large;">WolfShare</a>
+    <a class="navbar-brand text-dark" href="#" style="font-size: x-large;"><img src="img/icon.gif" height="10%" width="10%;">WolfShare</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -163,6 +170,7 @@
         </form>
     </div>
 </nav>
+</div>
 
 <div class="container">
     <div class="row" style="padding-top: 5%;">
@@ -176,7 +184,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="text" class="form-control bg-light" aria-label="Text input with dropdown button" ng-disabled = "!dropdownSelect">
+                <input type="text" class="form-control bg-light" aria-label="Text input with dropdown button" ng-disabled = "!dropdownSelect" ng-model="searchBook">
                 <div class="input-group-append" ng-show="dropdownSelect">
                     <span class="input-group-text rounded-0 bg-dark text-white">{{showSelected}}</span>
                 </div>
@@ -184,8 +192,8 @@
         </div>
     </div>
     <div class="row" style="padding-top: 2%;">
-        <div class="col-md-6" ng-repeat="book in booksList" style="padding: 1%;">
-            <div class="card border-dark rounded-0">
+        <div class="col-md-6" ng-repeat="book in booksList | customBookFilter:{term:searchBook, type:showSelected} | filter: searchBook" style="padding: 1%;">
+            <div class="card border-dark rounded-0 z-depth-3 animated bounceIn">
                 <div class="card-header rounded-0" style="background-color: black; color: white;">{{book.title}}</div>
                 <div class="card-body text-dark">
                     <h5 class="card-title">Author:&nbsp;{{book.author}}</h5>

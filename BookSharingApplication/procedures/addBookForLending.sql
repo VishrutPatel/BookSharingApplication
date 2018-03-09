@@ -7,8 +7,7 @@ IN inptgenre VARCHAR(100),
 IN inptauthor VARCHAR(100),
 IN inptstartdatetime DATETIME,
 IN inptenddatetime DATETIME,
-OUT check INT
- )
+)
  
  
 BEGIN
