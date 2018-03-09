@@ -17,8 +17,8 @@ else {
     $email="";
 
     $stmt=$conn->query("CALL RetrieveBorrowRequest('".$email."',@p1,@p2);");
-    $stmt2=$conn->query("SELECT @p1 FROM EMAIL");
-    $stmt3=$conn->query("SELECT @p2 FROM RATINGS");
+    $stmt2=$conn->query("SELECT @p1 AS EMAIL");
+    $stmt3=$conn->query("SELECT @p2 AS RATINGS");
     //The procedure returns only a bool value.
 
     $format=array();

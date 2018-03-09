@@ -11,7 +11,6 @@ $mail->SMTPAuth=true;
 $mail->SMTPSecure="ssl";
 $mail->Host="smtp.gmail.com";
 $mail->Port=465;
-$mail->IsHTML(true);
 $mail->Username="wolfsharenc@gmail.com";
 $mail->Password="9197375362";
 $mail->From="wolfsharenc@gmail.com";
