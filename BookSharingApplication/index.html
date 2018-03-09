@@ -96,6 +96,7 @@
                             <label for="secCode">Enter Security code</label>
                             <input type="text" class="form-control" placeholder="Enter security code" name="secCode" ng-model = "secCode" style="border-radius: 0;">
                             <p class="text-success" style="font-size:small;">Enter security code sent to your mail</p>
+                            <p class="text-danger" ng-show="secCodeNullError" style="font-size:small;">Security code must be of length 5</p>
                         </div>
                     </div>
                     <div class="offset-md-4 col-md-4">
@@ -110,6 +111,7 @@
                 </div>
                 <p class="text-danger" ng-show="secCodeReq" style="font-size:small;">Verification code is required</p>
                 <p class="text-danger" ng-show="secCodeLengthError" style="font-size:small;">Length of code is 5</p>
+                <p class="text-danger" ng-show="secCodeError" style="font-size:small;">Security code doesn't match the records</p>
                 <div class="clearfix" ng-show="showSignUpButton">
                     <button class="btn btn-outline-danger btn-lg rounded-0" ng-click="submitSignUpForm()">SignUp</button>
                 </div>
@@ -168,6 +170,7 @@
         </form>
     </div>
 </nav>
+</div>
 
 <div class="container">
     <div class="row" style="padding-top: 5%;">

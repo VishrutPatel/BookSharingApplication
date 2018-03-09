@@ -15,6 +15,7 @@ app.controller('indexController',function($scope,$window,$http){
     $scope.password = '';
     $scope.retypePassword= '';
     $scope.showVerifCodeButton = true;
+    $scope.secCode = '';
     $scope.checkValidation = function(){
         $scope.emailInvalid = false;
         $scope.firstNameInvalid = false;
@@ -31,6 +32,7 @@ app.controller('indexController',function($scope,$window,$http){
         $scope.userExists = false;
         $scope.inputSecCode = false;
         $scope.showSignUpButton = false;
+        $scope.secCodeNullError = false;
         var allValid = true;
         if($scope.email.length==0){
             $scope.emailInvalid = true;
@@ -98,6 +100,27 @@ app.controller('indexController',function($scope,$window,$http){
                         $scope.showSignUpButton = true;
                         $scope.showVerifCodeButton = false;
                         $scope.userExistsError = false;
+                        var finalFormData = {
+                            email: $scope.email,
+                            firstName: $scope.firstName,
+                            lastName: $scope.lastName,
+                            addr1: $scope.addr1,
+                            addr2: $scope.addr2,
+                            city: $scope.city,
+                            state: $scope.state,
+                            zipCode: $scope.zipCode,
+                            password: $scope.password
+                        }
+                        $http({
+                            method: "POST",
+                            url: "config/addSignUpData.php",
+                            data: finalFormData
+                        }).then(function (response) {
+
+                            console.log(response.data.message);
+                        }, function (response) {
+                            console.log(response.data.message);
+                        });
                     }
                 },function(response){
                     console.log(response.data.message);
@@ -140,7 +163,7 @@ app.controller('indexController',function($scope,$window,$http){
                 if(response.data.message=="Found"){
                     $window.sessionStorage.setItem("userEmail",$scope.emailLogin);
                     $window.sessionStorage.setItem("userPassword",$scope.passwordLogin);
-                    $window.location.href = "partials/userPage.html"
+                    $window.location.href = "partials/userPage.html";
                 }
                 else{
                     $scope.loginError = true;
@@ -162,15 +185,34 @@ app.controller('indexController',function($scope,$window,$http){
     }
     $scope.secCodeReq = false;
     $scope.secCodeLengthError = false;
+    $scope.secCodeError = false;
+    var validity = true;
     $scope.submitSignUpForm = function(){
         if($scope.secCode.length==0){
             $scope.secCodeReq = true;
+            validity = false;
         }
         if($scope.secCode.length!=5){
             $scope.secCodeLengthError = true;
+            validity = false;
         }
-        else{
-            $window.location.href = "partials/userPage.html"
+        if(validity){
+            var secCodeData = {loginEmail:$scope.email,securitycode:$scope.secCode};
+            $http({
+                method: "POST",
+                url: "config/checkSecCode.php",
+                data: secCodeData
+            }).then(function(response){
+                if(response.data.message=="True"){
+                    $window.sessionStorage.setItem("userEmail",$scope.email);
+                    $window.location.href = "partials/userPage.html";
+                }
+                else{
+                    $scope.secCodeError = true;
+                }
+            },function(response){
+                console.log(response.data.message);
+            });
         }
     }
     $scope.showBooks = function(){
@@ -186,16 +228,16 @@ app.controller('indexController',function($scope,$window,$http){
 });
 
 app.filter('customBookFilter',function(){
-   return function (input, option) {
-       if (!option.type || !option.term) {
-           return input;
-       }
-       var result = [];
-       angular.forEach(input,function (val, key) {
-           if(val[option.type].toLowerCase().indexOf(option.term.toLowerCase())>-1){
-               result.push(val);
-           }
-       })
-       return result;
-   } 
+    return function (input, option) {
+        if (!option.type || !option.term) {
+            return input;
+        }
+        var result = [];
+        angular.forEach(input,function (val, key) {
+            if(val[option.type].toLowerCase().indexOf(option.term.toLowerCase())>-1){
+                result.push(val);
+            }
+        })
+        return result;
+    }
 });
