@@ -4,7 +4,7 @@ app.controller('indexController',function($scope,$window,$http){
     $scope.listOfStates = ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
         "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR",
         "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
-    $scope.searchFilter = ["Author","Title","Genre"]
+    $scope.searchFilter = ["author","title","genre"]
     $scope.email = '';
     $scope.firstName = '';
     $scope.lastName = '';
@@ -14,6 +14,8 @@ app.controller('indexController',function($scope,$window,$http){
     $scope.state = '';
     $scope.password = '';
     $scope.retypePassword= '';
+    $scope.showVerifCodeButton = true;
+    $scope.secCode = '';
     $scope.checkValidation = function(){
         $scope.emailInvalid = false;
         $scope.firstNameInvalid = false;
@@ -30,7 +32,7 @@ app.controller('indexController',function($scope,$window,$http){
         $scope.userExists = false;
         $scope.inputSecCode = false;
         $scope.showSignUpButton = false;
-        $scope.showVerifCodeButton = true;
+        $scope.secCodeNullError = false;
         var allValid = true;
         if($scope.email.length==0){
             $scope.emailInvalid = true;
@@ -97,6 +99,28 @@ app.controller('indexController',function($scope,$window,$http){
                         $scope.enterSecCode = true;
                         $scope.showSignUpButton = true;
                         $scope.showVerifCodeButton = false;
+                        $scope.userExistsError = false;
+                        var finalFormData = {
+                            email: $scope.email,
+                            firstName: $scope.firstName,
+                            lastName: $scope.lastName,
+                            addr1: $scope.addr1,
+                            addr2: $scope.addr2,
+                            city: $scope.city,
+                            state: $scope.state,
+                            zipCode: $scope.zipCode,
+                            password: $scope.password
+                        }
+                        $http({
+                            method: "POST",
+                            url: "config/addSignUpData.php",
+                            data: finalFormData
+                        }).then(function (response) {
+
+                            console.log(response.data.message);
+                        }, function (response) {
+                            console.log(response.data.message);
+                        });
                     }
                 },function(response){
                     console.log(response.data.message);
@@ -128,8 +152,27 @@ app.controller('indexController',function($scope,$window,$http){
             $scope.passwordLoginInvalid = true;
             loginValid = false;
         }
+        $scope.loginError = false;
         if(loginValid){
-            $window.location.href = '../BookSharingApplication/partials/userPage.html';
+            var loginFormData = {loginEmail:$scope.emailLogin, loginPassword:$scope.passwordLogin};
+            $http({
+                method: "POST",
+                url: "config/login.php",
+                data: loginFormData
+            }).then(function(response){
+                if(response.data.message=="Found"){
+                    $window.sessionStorage.setItem("userEmail",$scope.emailLogin);
+                    $window.sessionStorage.setItem("userPassword",$scope.passwordLogin);
+                    $window.location.href = "partials/userPage.html";
+                }
+                else{
+                    $scope.loginError = true;
+                }
+            },function(response){
+                console.log(response.data.message);
+            });
+
+
         }
         else{
             $scope.loginFormError = true;
@@ -142,19 +185,38 @@ app.controller('indexController',function($scope,$window,$http){
     }
     $scope.secCodeReq = false;
     $scope.secCodeLengthError = false;
+    $scope.secCodeError = false;
+    var validity = true;
     $scope.submitSignUpForm = function(){
         if($scope.secCode.length==0){
             $scope.secCodeReq = true;
+            validity = false;
         }
         if($scope.secCode.length!=5){
             $scope.secCodeLengthError = true;
+            validity = false;
         }
-        else{
-
+        if(validity){
+            var secCodeData = {loginEmail:$scope.email,securitycode:$scope.secCode};
+            $http({
+                method: "POST",
+                url: "config/checkSecCode.php",
+                data: secCodeData
+            }).then(function(response){
+                if(response.data.message=="True"){
+                    $window.sessionStorage.setItem("userEmail",$scope.email);
+                    $window.location.href = "partials/userPage.html";
+                }
+                else{
+                    $scope.secCodeError = true;
+                }
+            },function(response){
+                console.log(response.data.message);
+            });
         }
     }
-
     $scope.showBooks = function(){
+
         $http({
             method:"GET",
             url:"config/RetriveData.php"
@@ -162,5 +224,20 @@ app.controller('indexController',function($scope,$window,$http){
             $scope.booksList = response.data;
         },function(response){
         });
+    }
+});
+
+app.filter('customBookFilter',function(){
+    return function (input, option) {
+        if (!option.type || !option.term) {
+            return input;
+        }
+        var result = [];
+        angular.forEach(input,function (val, key) {
+            if(val[option.type].toLowerCase().indexOf(option.term.toLowerCase())>-1){
+                result.push(val);
+            }
+        })
+        return result;
     }
 });
