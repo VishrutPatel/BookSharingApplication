@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row" style="padding-top: 5%;">
+        <div class="offset-md-2 col-md-8">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-dark dropdown-toggle rounded-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search using</button>
+                    <div class="dropdown-menu rounded-0">
+                        <div ng-repeat="category in searchFilter">
+                            <a class="dropdown-item" ng-click="categorySelect(category)" style="cursor: pointer;">{{category}}</a>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" class="form-control bg-light" aria-label="Text input with dropdown button" ng-disabled = "!dropdownSelect" ng-model="searchBook">
+                <div class="input-group-append" ng-show="dropdownSelect">
+                    <span class="input-group-text rounded-0 bg-dark text-white">{{showSelected}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 2%;">
+        <div class="col-md-6" ng-repeat="book in booksList | customBookFilter:{term:searchBook, type:showSelected} | filter: searchBook" style="padding: 1%;">
+            <div class="card border-dark rounded-0 z-depth-3 animated bounceIn">
+                <div class="card-header rounded-0" style="background-color: black; color: white;">{{book.title}}</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title">Author:&nbsp;{{book.author}}</h5>
+                    <p class="card-text">Genre:&nbsp;{{book.genre}}</p>
+                    <a href="#" class="btn btn-outline-danger rounded-0">Check Availability</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,17 +5,18 @@ require (__DIR__."/PHPMailer_5.2.0/class.phpmailer.php");
 // This PHP script is used to send a security code to verify the email-address of the registering user
 $mail=new PHPMailer();
 $mail->IsSMTP();
+//$mail->IsHTML(true);
 $mail->SMTPDebug=2;
+$mail->SMTPAuth=true;
+$mail->SMTPSecure="ssl";
 $mail->Host="smtp.gmail.com";
 $mail->Port=465;
-$mail->SMTPSecure="ssl";
-$mail->SMTPAuth=true;
-$mail->Username="ncwolfshare@gmail.com";
-
-
-$mail->From="ncwolfshare@gmail.com";
+$mail->IsHTML(true);
+$mail->Username="wolfsharenc@gmail.com";
+$mail->Password="9197375362";
+$mail->From="wolfsharenc@gmail.com";
 $mail->FromName="The WolfShare Team";
-$mail->AddAddress("nilaykapadia18@gmail.com","Nilay Kapadia");
+$mail->AddAddress("vnpatel@ncsu.edu","Vishrut Patel");
 $mail->Subject="Security Code for Wolfware";
 $code=rand(10001,99999);
 //AddSignUpInformation
