@@ -29,16 +29,30 @@
             </div>
         </div>
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content rounded-0">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content rounded-0 border-dark">
                     <div class="modal-header rounded-0" style="background-color: black;">
-                        <h5 class="modal-title" id="exampleModalLongTitle" style="background-color: black; color: white;">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="background-color: black; color: white;">{{bookData.Title}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" style="color: white;">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        
+                        <div class="row">
+                            <div class="col-md-6 border-right border-dark">
+                                <h2>Book Info</h2>
+                                <p><strong>Author: </strong>{{bookData.Author}}</p>
+                                <p><strong>Genre: </strong>{{bookData.Genre}}</p>
+                                <p><strong>Start Date: </strong>{{bookData.StartDate}}</p>
+                                <p><strong>End Date: </strong>{{bookData.EndDate}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h2>Lender Info</h2>
+                                <p><strong>Email: </strong>{{bookData.Email}}</p>
+                                <p><strong>Name: </strong>{{bookData.FirstName}} {{bookData.LastName}}</p>
+                                <p><strong>Ratings: </strong>{{bookData.Ratings}}</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger rounded-0" data-dismiss="modal">Send Borrow Request</button>
