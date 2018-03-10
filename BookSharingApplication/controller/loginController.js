@@ -72,9 +72,17 @@ loginApp.controller('basicController',function($scope,$window,$http){
         $scope.booksList = response.data;
     },function(response){
     });
-
     $scope.checkAvailability = function(id){
-        console.log(id);
+        var bookId = {bookId:id};
+        $http({
+            method: "GET",
+            url: "../config/retrieveBookInfo.php",
+            data: bookId
+        }).then(function(response){
+            $scope.bookData = response.data.bookData;
+            console.log($scope.bookData);
+        },function(response){
+        });
     }
 });
 
