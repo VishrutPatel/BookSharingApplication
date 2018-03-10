@@ -1,6 +1,6 @@
 <?php
 //Add book for lending(6in,1out)
-
+require (__DIR__."/Database.php");
 //Connect to Database
 //retrieve borrow request
 $dbconn = new Database();
