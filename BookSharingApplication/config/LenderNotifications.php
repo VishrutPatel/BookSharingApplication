@@ -15,15 +15,19 @@ else {
     $json = file_get_contents("php://input");
     $data = json_decode($json,true);
     $email="";
-    $stmt=$conn->query("CALL RetrieveBorrowRequest('".$email."',@p1,@p2);");
-    $stmt2=$conn->query("SELECT @p1 AS EMAIL");
-    $stmt3=$conn->query("SELECT @p2 AS RATINGS");
+    $stmt=$conn->query("CALL RetrieveBorrowRequest('".$email."',@p1,@p2.@p3,@p4);");
+    $stmt2=$conn->query("SELECT @p2 AS EMAIL");
+    $stmt3=$conn->query("SELECT @p3 AS RATINGS");
+    $stmt4=$conn->query("SELECT @p1 AS BOOKID");
+    $stmt5=$conn->query("SELECT @p4 AS TITLE");
     //The procedure returns only a bool value.
 
     $format=array();
-    while($row1=$stmt2->fetch(PDO::FETCH_ASSOC) && $row2=$stmt3->fetch(PDO::FETCH_ASSOC)){
+    while($row1=$stmt2->fetch(PDO::FETCH_ASSOC) && $row2=$stmt3->fetch(PDO::FETCH_ASSOC) && $row3=$stmt4->fetch(PDO::FETCH_ASSOC) && $row4=$stmt5->fetch(PDO::FETCH_ASSOC) ){
         $format['Email'][]=$row1;
         $format['Ratings'][]=$row2;
+        $format['BookId'][]=$row3;
+        $format['Title'][]=$row4;
     }
     echo json_encode($format);
 }
