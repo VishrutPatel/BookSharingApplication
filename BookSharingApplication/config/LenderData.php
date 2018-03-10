@@ -26,15 +26,23 @@ else {
     $userstartdate="";
     $userenddate="";
     $starttime=strtotime($userstartdate);
-    $startdate=date('YYYY-MM-DD',$starttime);
-
+    $startdate=date('Y-m-d H:i:s',$starttime);
     $endtime=strtotime($userenddate);
-    $enddate=date('YYYY-MM-DD',$endtime);
-    $stmt=$conn->query("CALL AddBookForLending('".$email."','".$title."','".$author."','".$genre."','".$startdate."','".$starttime."',@p1");
-    $stmt2=$conn->query("SELECT @p1 FROM VALRETURN");
+    $enddate=date('Y-m-d H:i:s',$endtime);
+    $mod="";
+    $stmt3=$conn->query("CALL GetCountOfBooks(@p1);");
+    $stmt2=$conn->query("SELECT @p1 AS COUNT;");
+    $result1=$stmt2->fetch();
+
+    $stmt=$conn->query("CALL AddBookForLending('".$email."','".$title."','".$author."','".$genre."','".$startdate."','".$enddate."','".$mod."');");
+
+    $stmt4=$conn->query("CALL GetCountOfBooks(@p1);");
+    $stmt5=$conn->query("SELECT @p1 AS COUNT;");
+    $result2=$stmt5->fetch();
+
     //The procedure returns only a bool value.
-    $result = $stmt2->fetch();
-    if ($result == true) {
+
+    if ($result2['COUNT']-$result1['COUNT'] == 1 ) {
         //return a true value to the front-end for a go ahead to signup
         echo "true";
     } else {
