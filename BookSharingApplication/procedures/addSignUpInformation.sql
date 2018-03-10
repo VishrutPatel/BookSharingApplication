@@ -22,5 +22,12 @@ BEGIN
       (firstname, lastname, addr1, addr2, city, state, zipcode, email, reg_date, sec_code, verification_status,password)
       values 
       (inptfirstname, inptlastname, inptaddr1, inptaddr2, inptcity, inptstate, inptzipcode, inptemail, inptreg_date, inptsec_code, inptverification_status, inptpassword);
-      
+      insert into borrower
+      (email,ratings,no_of_reviews)
+      values
+      (inptemail,5.00,0);
+      insert into lender
+      (email,ratings,no_of_reviews)
+      values
+      (inptemail,5.00,0);
 END//
