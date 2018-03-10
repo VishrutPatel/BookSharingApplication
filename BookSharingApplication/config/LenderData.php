@@ -29,7 +29,7 @@ else {
     $startdate=date('Y-m-d H:i:s',$starttime);
     $endtime=strtotime($userenddate);
     $enddate=date('Y-m-d H:i:s',$endtime);
-    $mod="";
+    $mod=$data['deliveryModeBook'];
     $stmt3=$conn->query("CALL GetCountOfBooks(@p1);");
     $stmt2=$conn->query("SELECT @p1 AS COUNT;");
     $result1=$stmt2->fetch();
