@@ -11,8 +11,9 @@ OUT otptTitle varchar(50),
  
 BEGIN
       
-      SELECT br.book_Id,b.email,b.ratings,bk.title
+      SELECT br.book_Id into otptbookID,b.email into otptborroweremail,b.ratings into otptratings,bk.title into otptTitle
       FROM borrower b, borrowrequest br, book bk
       WHERE b.email = br.borroweremail AND bk.id = br.book_Id AND bk.email = inptemail
+      ORDER BY br.book_Id
       
 END//
