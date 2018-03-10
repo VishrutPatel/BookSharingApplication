@@ -28,7 +28,7 @@ else {
     $genre="";
     $userstartdate="";
     $userenddate="";
-    $stmt=$conn->query("CALL AddBorrowRequest('".$email."',".$bookid."'".$startdate."','".$enddate."',@p1");
+    $stmt=$conn->query("CALL AddBorrowRequest('".$email."',".$bookid."',@p1");
     $stmt2=$conn->query("SELECT @p1 AS VALRETURN");
     //The procedure returns only a bool value.
     $result = $stmt2->fetch();
