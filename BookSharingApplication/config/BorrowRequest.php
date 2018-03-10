@@ -5,6 +5,7 @@
  * Date: 20/02/18
  * Time: 14:12
  */
+require (__DIR__."/Database.php");
 //borroweremail
 //bookid
 //starttime
@@ -18,8 +19,6 @@ if($conn==false){
     //If database to connection is not established
 }
 else {
-    //Execute a procedure call to validate signup (Check for already present users)
-    //get a json file and decode it
     $json = file_get_contents("php://input");
     $data = json_decode($json);
     $email="";

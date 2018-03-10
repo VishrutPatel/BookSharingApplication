@@ -12,6 +12,10 @@ loginApp.controller('loginController',function($scope,$window,$http){
         }, function (response) {
         });
     }
+    $scope.logout = function(){
+        $window.sessionStorage.removeItem("userEmail");
+        window.location.replace("../index.html");
+    }
 });
 
 loginApp.filter('customBookFilter',function(){
@@ -68,25 +72,31 @@ loginApp.controller('basicController',function($scope,$window,$http){
         $scope.booksList = response.data;
     },function(response){
     });
+
+    $scope.checkAvailability = function(id){
+        console.log(id);
+    }
 });
 
 loginApp.controller('addBookController',function($scope,$window,$http){
+    $scope.title = '';
+    $scope.author = '';
+    $scope.genre='';
+    $scope.startDate = '';
+    $scope.endDate = '';
+    $scope.deliveryMode = '';
+    $scope.bookAddedSuccessfully = false;
     $scope.addBook = function(){
-        var bookData = {title:$scope.title,author:$scope.author,genre:$scope.genre,startDate:$scope.startDate,endDate:$scope.endDate};
+        var bookData = {emailBook:$window.sessionStorage.getItem("userEmail"),titleBook:$scope.title,authorBook:$scope.author,genreBook:$scope.genre,startDateBook:$scope.startDate,endDateBook:$scope.endDate,deliveryModeBook:$scope.deliveryMode};
         $http({
             method: "POST",
-            url: "config/checkSecCode.php",
-            data: secCodeData
+            url: "../config/LenderData.php",
+            data: bookData
         }).then(function(response){
             if(response.data.message=="True"){
-                $window.sessionStorage.setItem("userEmail",$scope.email);
-                $window.location.href = "partials/userPage.html";
-            }
-            else{
-                $scope.secCodeError = true;
+                $scope.bookAddedSuccessfully = true;
             }
         },function(response){
-            console.log(response.data.message);
         });
     }
 
