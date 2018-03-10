@@ -28,11 +28,6 @@ else {
     $genre="";
     $userstartdate="";
     $userenddate="";
-    $starttime=strtotime($userstartdate);
-    $startdate=date('YYYY-MM-DD',$starttime);
-
-    $endtime=strtotime($userenddate);
-    $enddate=date('Y-m-d H:i:s',$endtime);
     $stmt=$conn->query("CALL AddBorrowRequest('".$email."',".$bookid."'".$startdate."','".$enddate."',@p1");
     $stmt2=$conn->query("SELECT @p1 AS VALRETURN");
     //The procedure returns only a bool value.
