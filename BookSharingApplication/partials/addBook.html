@@ -1,57 +1,62 @@
 <div class="container" style="padding-top: 5%;">
     <div style="text-align: center;">
         <form class="form inline">
-            <h1 class="h2">Add a book</h1>
-            <div class="form-row">
-                <div class="offset-md-2 col-md-4">
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" placeholder="Enter title of Book" name="title" ng-model = "title" style="border-radius: 0;">
-                        <p class="text-danger" ng-show="titleInvalid" style="font-size:small;">*</p>
+            <div ng-hide="bookAddedSuccessfully">
+                <h1 class="h2">Add a book</h1>
+                <div class="form-row">
+                    <div class="offset-md-2 col-md-4">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" placeholder="Enter title of Book" name="title" ng-model = "title" style="border-radius: 0;">
+                            <p class="text-danger" ng-show="titleInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Author">Author</label>
+                            <input type="text" class="form-control" placeholder="Enter author of book" ng-model="author" style="border-radius: 0;">
+                            <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="offset-md-2 col-md-4">
+                        <div class="form-group">
+                            <label for="Genre">Genre</label>
+                            <input type="text" class="form-control" placeholder="Enter genre of book" ng-model="genre" style="border-radius: 0;">
+                            <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="startDate">Start Date</label>
+                            <input type="text" class="form-control" placeholder="MM/DD/YYYY" ng-model="startDate" style="border-radius: 0;">
+                            <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="offset-md-2 col-md-4">
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <input type="text" class="form-control" placeholder="MM/DD/YYYY" ng-model="endDate" style="border-radius: 0;">
+                            <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="modeOfDelivery">Mode of Delivery</label>
+                            <select id="modeOfDelivery" class="form-control" ng-model="deliveryMode" style="border-radius: 0;">
+                                <option value="MCP" selected>Meet at Common Place</option>
+                                <option value="PK">Pick up from lender</option>
+                                <option value="HD">Ship to borrower</option>
+                            </select>
+                            <p class="text-danger" ng-show="stateInvalid" style="font-size:small;">*</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="Author">Author</label>
-                        <input type="text" class="form-control" placeholder="Enter author of book" ng-model="author" style="border-radius: 0;">
-                        <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
-                    </div>
-                </div>
-                <div class="offset-md-2 col-md-4">
-                    <div class="form-group">
-                        <label for="Genre">Genre</label>
-                        <input type="text" class="form-control" placeholder="Enter genre of book" ng-model="genre" style="border-radius: 0;">
-                        <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="startDate">Start Date</label>
-                        <input type="text" class="form-control" placeholder="MM/DD/YYYY" ng-model="startDate" style="border-radius: 0;">
-                        <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
-                    </div>
-                </div>
-                <div class="offset-md-2 col-md-4">
-                    <div class="form-group">
-                        <label for="endDate">End Date</label>
-                        <input type="text" class="form-control" placeholder="MM/DD/YYYY" ng-model="endDate" style="border-radius: 0;">
-                        <p class="text-danger" ng-show="firstNameInvalid" style="font-size:small;">*</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="modeOfDelivery">Mode of Delivery</label>
-                        <select id="modeOfDelivery" class="form-control" ng-model="deliveryMode" style="border-radius: 0;">
-                            <option value="MCP" selected>Meet at Common Place</option>
-                            <option value="PK">Pick up from lender</option>
-                            <option value="HD">Ship to borrower</option>
-                        </select>
-                        <p class="text-danger" ng-show="stateInvalid" style="font-size:small;">*</p>
-                    </div>
+                <div class="clearfix">
+                    <button class="btn btn-outline-danger btn-lg rounded-0" ng-click="addBook()">Add</button>
                 </div>
             </div>
-            <div class="clearfix">
-                <button class="btn btn-outline-danger btn-lg rounded-0" ng-click="addBook()">Add</button>
+            <div>
+                <p class="text-success" ng-show="bookAddedSuccessfully" style="font-size:small;">Book Added Successfully</p>
             </div>
         </form>
     </div>
