@@ -13,9 +13,8 @@ else {
     //Execute a procedure call to validate signup (Check for already present users)
     //get a json file and decode it
     $json = file_get_contents("php://input");
-    $data = json_decode($json);
+    $data = json_decode($json,true);
     $email="";
-
     $stmt=$conn->query("CALL RetrieveBorrowRequest('".$email."',@p1,@p2);");
     $stmt2=$conn->query("SELECT @p1 AS EMAIL");
     $stmt3=$conn->query("SELECT @p2 AS RATINGS");

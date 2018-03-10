@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row" style="padding-top: 5%;">
         <div class="offset-md-2 col-md-8">
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 z-depth-3">
                 <div class="input-group-prepend">
                     <button class="btn btn-outline-dark dropdown-toggle rounded-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search using</button>
                     <div class="dropdown-menu rounded-0">
@@ -24,9 +24,28 @@
                 <div class="card-body text-dark">
                     <h5 class="card-title">Author:&nbsp;{{book.author}}</h5>
                     <p class="card-text">Genre:&nbsp;{{book.genre}}</p>
-                    <a href="#" class="btn btn-outline-danger rounded-0">Check Availability</a>
+                    <button type="button" class="btn btn-outline-danger rounded-0" data-toggle="modal" data-target="#exampleModalCenter" ng-click="checkAvailability(book.id)">Check Availability</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header rounded-0" style="background-color: black;">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="background-color: black; color: white;">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color: white;">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger rounded-0" data-dismiss="modal">Send Borrow Request</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>

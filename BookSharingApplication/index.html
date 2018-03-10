@@ -154,7 +154,7 @@
         </div>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top z-depth-3">
     <a class="navbar-brand text-dark" href="#" style="font-size: x-large;"><img src="img/icon.gif" height="10%" width="10%;">WolfShare</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -175,7 +175,7 @@
 <div class="container">
     <div class="row" style="padding-top: 5%;">
         <div class="offset-md-2 col-md-8">
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 z-depth-3">
                 <div class="input-group-prepend">
                     <button class="btn btn-outline-dark dropdown-toggle rounded-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search using</button>
                     <div class="dropdown-menu rounded-0">
@@ -198,7 +198,7 @@
                 <div class="card-body text-dark">
                     <h5 class="card-title">Author:&nbsp;{{book.author}}</h5>
                     <p class="card-text">Genre:&nbsp;{{book.genre}}</p>
-                    <a href="#" class="btn btn-outline-danger rounded-0">Check Availability</a>
+                    <a href="#" class="btn btn-outline-danger rounded-0" ng-click="checkAvailability(book.id)">Check Availability</a>
                 </div>
             </div>
         </div>

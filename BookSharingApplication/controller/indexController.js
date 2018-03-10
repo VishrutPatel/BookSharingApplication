@@ -1,10 +1,12 @@
 var app = angular.module("mainApp",[]);
 
 app.controller('indexController',function($scope,$window,$http){
+    $window.sessionStorage.setItem("userEmail",null);
+    $window.sessionStorage.setItem("userPassword",null);
     $scope.listOfStates = ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
         "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR",
-        "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"]
-    $scope.searchFilter = ["author","title","genre"]
+        "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"];
+    $scope.searchFilter = ["author","title","genre"];
     $scope.email = '';
     $scope.firstName = '';
     $scope.lastName = '';
@@ -224,6 +226,11 @@ app.controller('indexController',function($scope,$window,$http){
             $scope.booksList = response.data;
         },function(response){
         });
+    }
+    $scope.checkAvailability = function (id) {
+        if($window.sessionStorage.getItem("userEmail")=="null"){
+
+        }
     }
 });
 

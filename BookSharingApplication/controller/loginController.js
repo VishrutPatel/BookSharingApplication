@@ -12,6 +12,10 @@ loginApp.controller('loginController',function($scope,$window,$http){
         }, function (response) {
         });
     }
+    $scope.logout = function(){
+        $window.sessionStorage.removeItem("userEmail");
+        window.location.replace("../index.html");
+    }
 });
 
 loginApp.filter('customBookFilter',function(){
@@ -68,6 +72,10 @@ loginApp.controller('basicController',function($scope,$window,$http){
         $scope.booksList = response.data;
     },function(response){
     });
+
+    $scope.checkAvailability = function(id){
+        console.log(id);
+    }
 });
 
 loginApp.controller('addBookController',function($scope,$window,$http){
