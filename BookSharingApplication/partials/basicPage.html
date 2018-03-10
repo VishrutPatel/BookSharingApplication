@@ -50,12 +50,15 @@
                                 <h2>Lender Info</h2>
                                 <p><strong>Email: </strong>{{bookData.Email}}</p>
                                 <p><strong>Name: </strong>{{bookData.FirstName}} {{bookData.LastName}}</p>
-                                <p><strong>Ratings: </strong>{{bookData.Ratings}}</p>
+                                <p><strong>Ratings: </strong>{{bookData.Ratings}}/5.00</p>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger rounded-0" data-dismiss="modal">Send Borrow Request</button>
+                    <div class="modal-footer" ng-hide="requestSentSuccessfully">
+                        <button type="button" class="btn btn-outline-danger rounded-0" ng-click="sendBorrowRequest(bookData.bookId)">Send Borrow Request</button>
+                    </div>
+                    <div>
+                        <p class="text-success" ng-show="requestSentSuccessfully" style="font-size:small;"><strong>Request Sent Successfully</strong></p>
                     </div>
                 </div>
             </div>

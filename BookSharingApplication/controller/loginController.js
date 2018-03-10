@@ -53,6 +53,10 @@ loginApp.config(function($routeProvider) {
             templateUrl : 'borrowedBooks.html',
             controller  : 'borrowedBooksController'
         })
+        .when('/notifications',{
+            templateUrl: 'notification.html',
+            controller : 'notificationController'
+        })
         .otherwise({
             redirectTo: '/'
         });
@@ -72,15 +76,30 @@ loginApp.controller('basicController',function($scope,$window,$http){
         $scope.booksList = response.data;
     },function(response){
     });
+    $scope.bookData = null;
     $scope.checkAvailability = function(id){
-        var bookId = {bookId:id};
+        var bookIdentity = {bookId:id};
         $http({
-            method: "GET",
+            method: "POST",
             url: "../config/retrieveBookInfo.php",
-            data: bookId
+            data: bookIdentity
         }).then(function(response){
             $scope.bookData = response.data.bookData;
-            console.log($scope.bookData);
+        },function(response){
+        });
+    }
+    $scope.requestSentSuccessfully = false;
+    $scope.sendBorrowRequest = function(bookId){
+        var borrowData = {bookIdentity:bookId,borrowerEmail: $window.sessionStorage.getItem("userEmail")};
+        $http({
+            method: "POST",
+            url: "../config/BorrowRequest.php",
+            data: borrowData
+        }).then(function(response){
+            console.log(response.data.message);
+            if(response.data.message=="True"){
+                $scope.requestSentSuccessfully = true;
+            }
         },function(response){
         });
     }
@@ -114,5 +133,9 @@ loginApp.controller('lendedBooksController',function($scope,$window,$http){
 });
 
 loginApp.controller('borrowedBooksController',function($scope,$window,$http){
+
+});
+
+loginApp.controller('notificationController',function($scope,$window,$http){
 
 });
