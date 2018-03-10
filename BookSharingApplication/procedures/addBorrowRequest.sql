@@ -2,7 +2,7 @@ delimiter //
 
 CREATE PROCEDURE `addBorrowRequest`(
 IN inptborroweremail VARCHAR(50),
-IN inptbookid VARCHAR(30),
+IN inptbookid INT(6),
 IN inptstartdatetime DATETIME,
 IN inptenddatetime DATETIME,
 OUT check INT
