@@ -23,7 +23,8 @@ else {
     $format=array();
     while($row1=$stmt->fetch(PDO::FETCH_ASSOC)){
         $format[]=$row1;
-
     }
-    echo json_encode($format);
+    echo json_encode(
+        array("message"=>$format)
+    );
 }
