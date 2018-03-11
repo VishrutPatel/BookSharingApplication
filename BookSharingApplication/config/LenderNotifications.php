@@ -14,17 +14,17 @@ else {
     //get a json file and decode it
     $json = file_get_contents("php://input");
     $data = json_decode($json,true);
-    $email="";
-    $stmt=$conn->query("CALL RetrieveBorrowRequest('".$email."',@p1,@p2);");
-    $stmt2=$conn->query("SELECT @p1 AS EMAIL");
-    $stmt3=$conn->query("SELECT @p2 AS RATINGS");
+    $email="pjmandle@ncsu.edu";
+    $stmt=$conn->query("SELECT br.book_Id ,b.email ,b.ratings ,bk.title FROM borrower b, borrowrequest br, book bk WHERE b.email = br.borrower_email AND bk.id = br.book_Id AND bk.email = '".$email."' ORDER BY br.book_Id");
+    $stmt->execute();
+    //$result=$stmt->fetch(PDO::FETCH_ASSOC);
+    //echo $result;
     //The procedure returns only a bool value.
-
     $format=array();
-    while($row1=$stmt2->fetch(PDO::FETCH_ASSOC) && $row2=$stmt3->fetch(PDO::FETCH_ASSOC)){
-        $format['Email'][]=$row1;
-        $format['Ratings'][]=$row2;
+    while($row1=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $format[]=$row1;
     }
-    echo json_encode($format);
+    echo json_encode(
+        array("message"=>$format)
+    );
 }
-
