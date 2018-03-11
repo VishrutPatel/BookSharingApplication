@@ -17,6 +17,11 @@ The current usage of technologies for accomplishing project goals are discussed 
 * HTML5/CSS3 - HTML, a markup language and CSS, a style sheet language are used as primary laguages for application's frontend development. 
 * XAMPP/WAMP - Used as webserver solution stack.
 
-```
-Keep watching this page, more information to come ...
-```
+## Installation Instructions(for handover)
+1. Install XAMPP or WAMPP (link provided) XAMPP:https://www.apachefriends.org/download.html WAMPP:http://www.wampserver.com/en/
+2. Clone the Git Repository in the htdocs folder or www folder for xampp and wampp respectivley.
+3. Setup ports in the XAMPP/WAMPP for MySQL(using PHPmyAdmin) and localhost.
+4. To setup the Database, open PHPmyAdmin in your browser and create a database called "booksharingapplication" (without quotes).
+5. Then click on the import button in PHPmyAdmin and provide the file "booksharingapplication.sql" inside the procedures folder to import the database, tables and procedures.
+6. Run localhost:portno/BookSharingApplication/index.html
+7. Congratulations, your website is setup.
