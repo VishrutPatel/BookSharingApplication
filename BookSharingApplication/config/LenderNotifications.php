@@ -27,5 +27,4 @@ else {
     echo json_encode(
         array("message"=>$format)
     );
-    
 }
