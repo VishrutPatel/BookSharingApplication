@@ -13,7 +13,7 @@ IN inptenddatetime DATETIME,
 BEGIN
       
       insert into book 
-      (email,title,author,genre,start_Date_Time,end_Date_Time)
+      (email,title,author,genre,start_Date_Time,end_Date_Time,book_status)
       values 
-      (inptemail,inpttitle,inptauthor,inptgenre,inptstartdatetime,inptenddatetime);
+      (inptemail,inpttitle,inptauthor,inptgenre,inptstartdatetime,inptenddatetime,1);
 END//
