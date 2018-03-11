@@ -14,8 +14,8 @@ OUT end_Date_Time DATETIME
  
 BEGIN
 
-      select *
-      from book b
-      where inptemail = b.email;
+      select b.id, b.email, b.title, b.author, b.genre, b.start_Date_Time, b.end_Date_Time
+      from TRANSACTION t, book b
+      where inptemail = t.lender_email and t.book_Id = b.id;
      
 END//
