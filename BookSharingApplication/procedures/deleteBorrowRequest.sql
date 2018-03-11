@@ -7,6 +7,6 @@ IN bookID INT(6)
 BEGIN
 
       DELETE FROM BorrowRequest br
-      where bookID = br.book_Id;
+      where br.book_Id = bookID;
      
 END//

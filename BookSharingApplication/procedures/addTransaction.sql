@@ -14,5 +14,9 @@ BEGIN
       (lender_email,book_Id,borrower_email)
       values 
       (lenderemail,inptbookid,borroweremail);
+      insert into reviews
+      (transaction_id)
+      values
+      (select id from transaction where book_Id = inptbookid);
 
 END//
