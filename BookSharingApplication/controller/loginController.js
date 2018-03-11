@@ -16,6 +16,15 @@ loginApp.controller('loginController',function($scope,$window,$http){
         $window.sessionStorage.removeItem("userEmail");
         window.location.replace("../index.html");
     }
+    var email = {email:$window.sessionStorage.getItem("userEmail")};
+    $http({
+        method: "POST",
+        url: "../config/getNotificationsCount.php",
+        data: email
+    }).then(function(response){
+        $scope.count = response.data.count;
+    },function(response){
+    });
 });
 
 loginApp.filter('customBookFilter',function(){
@@ -129,7 +138,21 @@ loginApp.controller('addBookController',function($scope,$window,$http){
 
 });
 loginApp.controller('lendedBooksController',function($scope,$window,$http){
-
+    var email = {email:$window.sessionStorage.getItem("userEmail")};
+    $scope.noBooks = false;
+    $http({
+        method: "POST",
+        url: "../config/getLentBooks.php",
+        data: email
+    }).then(function(response){
+        if(response.data.message=="false"){
+            $scope.noBooks = true;
+        }
+        else{
+            $scope.lentBooks = response.data.message;
+        }
+    },function(response){
+    });
 });
 
 loginApp.controller('borrowedBooksController',function($scope,$window,$http){
