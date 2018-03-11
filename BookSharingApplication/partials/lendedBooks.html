@@ -11,6 +11,34 @@
                 <h5 class="card-title">Author:&nbsp;{{book.author}}</h5>
                 <p class="card-text">Genre:&nbsp;{{book.genre}}</p>
                 <p class="card-text">Borrowed by: {{book.borrower_email}}</p>
+                <button type="button" class="btn btn-outline-danger rounded-0" ng-show="book.lender_review_approve=='0'" data-toggle="modal" data-target="#exampleModalCenter">Give Book Review</button>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content rounded-0 border-dark">
+                    <div class="modal-header rounded-0" style="background-color: black;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color: white;">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 border-right border-dark">
+
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" ng-hide="requestSentSuccessfully">
+                        <button type="button" class="btn btn-outline-danger rounded-0" ng-click="sendBorrowRequest(bookData.bookId)">Submit Review</button>
+                    </div>
+                    <div>
+                        <p class="text-success" ng-show="requestSentSuccessfully" style="font-size:small;"><strong>Request Sent Successfully</strong></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

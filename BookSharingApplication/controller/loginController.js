@@ -150,16 +150,32 @@ loginApp.controller('lendedBooksController',function($scope,$window,$http){
         }
         else{
             $scope.lentBooks = response.data.message;
+            console.log($scope.lentBooks);
         }
     },function(response){
     });
 });
 
 loginApp.controller('borrowedBooksController',function($scope,$window,$http){
-
+    var email = {email:$window.sessionStorage.getItem("userEmail")};
+    $scope.noBooks = false;
+    $http({
+        method: "POST",
+        url: "../config/getBorrowedBooks.php",
+        data: email
+    }).then(function(response){
+        if(response.data.message=="false"){
+            $scope.noBooks = true;
+        }
+        else{
+            $scope.borrowedBooks = response.data.message;
+            console.log($scope.borrowedBooks);
+        }
+    },function(response){
+    });
 });
 
-loginApp.controller('notificationController',function($scope,$window,$http){
+loginApp.controller('notificationController',function($scope,$window,$http,$route){
     var email = {email:$window.sessionStorage.getItem("userEmail")};
     $http({
         method: "POST",
@@ -169,4 +185,16 @@ loginApp.controller('notificationController',function($scope,$window,$http){
         $scope.notificationList = response.data.message;
     },function(response){
     });
+    $scope.approveBorrowRequest = function(book_id,borrower_email){
+        var approvedBookData = {bookId:book_id,borrowerEmail: borrower_email,lenderEmail:$window.sessionStorage.getItem("userEmail")};
+        $http({
+            method: "POST",
+            url: "../config/approveRequest.php",
+            data: approvedBookData
+        }).then(function(response){
+            $route.reload();
+            $window.location.reload();
+        },function(response){
+        });
+    }
 });
