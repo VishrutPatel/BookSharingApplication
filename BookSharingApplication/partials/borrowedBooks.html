@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="row" ng-show="noBooks" style="padding-top: 5%;">
+    <div class="container text-danger" style="text-align: center;">
+        <h2 class="display-3">You have not borrowed any books</h2>
+    </div>
+</div>
+<div class="row" ng-hide="noBooks">
+    <div class="col-md-6" ng-repeat="book in borrowedBooks" style="padding: 1%;">
+        <div class="card border-dark rounded-0 z-depth-3 animated bounceIn">
+            <div class="card-header rounded-0" style="background-color: black; color: white;">{{book.title}}</div>
+            <div class="card-body text-dark">
+                <h5 class="card-title">Author:&nbsp;{{book.author}}</h5>
+                <p class="card-text">Genre:&nbsp;{{book.genre}}</p>
+                <p class="card-text">Lended by: {{book.lender_email}}</p>
+                <p class="card-text">Return by Date: {{book.end_Date_Time}}</p>
+                <button class=""></button>
+            </div>
+        </div>
+    </div>
+</div>

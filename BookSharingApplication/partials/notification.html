@@ -6,7 +6,9 @@
                 <div class="card-body">
                     <p class="card-text"><strong>Requested By:</strong> {{notification.email}}</p>
                     <p class="card-text"><strong>Borrower Ratings:</strong> {{notification.ratings}}</p>
+                    <a class="btn btn-outline-danger rounded-0" ng-click="approveBorrowRequest(notification.book_Id,notification.email)">Approve</a>
                 </div>
+
             </div>
         </div>
     </div>
