@@ -16,6 +16,15 @@ loginApp.controller('loginController',function($scope,$window,$http){
         $window.sessionStorage.removeItem("userEmail");
         window.location.replace("../index.html");
     }
+    var email = {email:$window.sessionStorage.getItem("userEmail")};
+    $http({
+        method: "POST",
+        url: "../config/getNotificationsCount.php",
+        data: email
+    }).then(function(response){
+        $scope.count = response.data.count;
+    },function(response){
+    });
 });
 
 loginApp.filter('customBookFilter',function(){
