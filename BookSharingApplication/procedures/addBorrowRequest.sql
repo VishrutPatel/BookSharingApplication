@@ -12,8 +12,8 @@ OUT check INT
 BEGIN
       
       insert into borrowrequest 
-      (book_Id,borrower_email,start_Date_Time,end_Date_Time)
+      (book_Id,borrower_email)
       values 
-      (inptborroweremail,inptbookid,inptstartdatetime,inptenddatetime);
+      (inptborroweremail,inptbookid);
 
 END//
