@@ -85,7 +85,7 @@ end_Date_Time DATETIME NOT NULL,
 FOREIGN KEY (email) REFERENCES User(email)
 )";
 if ($conn->query($sql) === TRUE) {
-    echo "Table Book.php created successfully";
+    echo "Table Book created successfully";
 } else {
     echo "Error creating table: " . $conn->error;
 }
@@ -94,12 +94,9 @@ id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 lender_email VARCHAR(50) NOT NULL,
 borrower_email VARCHAR(50) NOT NULL,
 book_Id INT(6) NOT NULL,
-start_Date_Time DATETIME NOT NULL,
-end_Date_Time DATETIME NOT NULL,
-location VARCHAR(100) NOT NULL,
 FOREIGN KEY (lender_email) REFERENCES User(email),
 FOREIGN KEY (borrower_email) REFERENCES User(email),
-FOREIGN KEY (book_Id) REFERENCES Book.php(id)
+FOREIGN KEY (book_Id) REFERENCES Book(id)
 )";
 if ($conn->query($sql) === TRUE) {
     echo "Table TRANSACTION created successfully";
