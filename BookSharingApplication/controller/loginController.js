@@ -137,5 +137,13 @@ loginApp.controller('borrowedBooksController',function($scope,$window,$http){
 });
 
 loginApp.controller('notificationController',function($scope,$window,$http){
-
+    var email = {email:$window.sessionStorage.getItem("userEmail")};
+    $http({
+        method: "POST",
+        url: "../config/LenderNotifications.php",
+        data: email
+    }).then(function(response){
+        $scope.notificationList = response.data.message;
+    },function(response){
+    });
 });

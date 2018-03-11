@@ -8,7 +8,7 @@ OUT count INT
  
 BEGIN
       
-      SELECT count(*) as count
+      SELECT count(*) into count
       FROM borrower b, borrowrequest br, book bk
       WHERE b.email = br.borroweremail AND bk.id = br.book_Id AND bk.email = inptemail
       
