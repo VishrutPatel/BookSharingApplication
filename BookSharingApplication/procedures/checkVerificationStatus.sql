@@ -1,6 +1,6 @@
 delimiter //
 
-CREATE PROCEDURE `validateLogin`(
+CREATE PROCEDURE `checkVerificationStatus`(
 IN inptemail varchar(50),
 IN inptpass varchar(30),
 OUT validate int
@@ -13,8 +13,6 @@ BEGIN
       FROM user u
       WHERE u.email = inptemail
       AND
-      u.password = inptpass
-      AND
-      u.verification_status = true;
+      u.verification_status = TRUE;
       
 END//
