@@ -15,7 +15,9 @@ else {
     $json = file_get_contents("php://input");
     $data = json_decode($json,true);
     $email="pjmandle@ncsu.edu";
-    $stmt=$conn->query("select * from book b where inptemail = '".$email."';");
+    $stmt=$conn->query("select b.id, b.email, b.title, b.author, b.genre, b.start_Date_Time, b.end_Date_Time
+      from TRANSACTION t, book b
+      where inptemail = '".$email."'and t.book_Id = b.id;");
     $stmt->execute();
     //$result=$stmt->fetch(PDO::FETCH_ASSOC);
     //echo $result;
