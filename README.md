@@ -26,7 +26,7 @@ The current usage of technologies for accomplishing project goals are discussed 
 6. Run localhost:portno/BookSharingApplication/index.html
 7. Congratulations, your website is setup.
 
-##Team
+## Team
 [Kavi Pandya](https://github.com/pandyakavi)
 [Nilay Kapadia](https://github.com/NilayKapadia)
 [Priyance Mandlewala](https://github.com/princemandlewala)
