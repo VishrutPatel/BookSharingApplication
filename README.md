@@ -18,12 +18,12 @@ The current usage of technologies for accomplishing project goals are discussed 
 * XAMPP/WAMP - Used as webserver solution stack.
 
 ## Installation Instructions(for handover)
-1. Install XAMPP or WAMPP (link provided) XAMPP:https://www.apachefriends.org/download.html WAMPP:http://www.wampserver.com/en/
+1. Install XAMPP or WAMPP (link provided) XAMPP(Windows):https://www.apachefriends.org/download.html, XAMPP(MACOS):https://sourceforge.net/projects/xampp/files/XAMPP%20Mac%20OS%20X/5.6.33/xampp-osx-5.6.33-0-installer.dmg/download WAMPP(Only windows):http://www.wampserver.com/en/
 2. Clone the Git Repository in the htdocs folder or www folder for xampp and wampp respectivley.
-3. Setup ports in the XAMPP/WAMPP for MySQL(using PHPmyAdmin) and localhost.
-4. To setup the Database, open PHPmyAdmin in your browser and create a database called "booksharingapplication" (without quotes).
-5. Then click on the import button in PHPmyAdmin and provide the file "booksharingapplication.sql" inside the procedures folder to import the database, tables and procedures.
-6. Run localhost:portno/BookSharingApplication/index.html
+3. Setup ports in the XAMPP/WAMPP for MySQL and Apache localhost (For MACOS use the "manager-osx" program provided in the main XAMPP foler).
+4. To setup the Database, open PHPmyAdmin in your browser or directly from the XAMPP/WAMPP control panel and create a database called "booksharingapplication" (without quotes).
+5. Then click on the import button in PHPmyAdmin and provide the file "booksharingapplication.sql" inside the procedures folder of the cloned repository to import the database, tables and procedures.
+6. Run localhost:portno/BookSharingApplication/index.html on your browser
 7. Congratulations, your website is setup.
 
 ## Team
